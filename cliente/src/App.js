@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Personas from './componets/personas';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './componets/ingreso/Login';
 
 function App() {
   const [data, setData] = useState([]);
@@ -29,12 +31,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header className="App-header">
+      {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <h1>
+      </header>*/}
 
-      </h1>
+      <Login />
       <Personas personas={personas} />
       {data.map(item => (
         <li key={item.id}>{item.nombre} {item.descripcion}</li>
