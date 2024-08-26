@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
+import Usuarios from './pages/Usuarios';
 
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={HomePage}/>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/usuarios" element={<Usuarios/>}/>
       </Routes>
     </div>
   );
