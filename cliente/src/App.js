@@ -2,9 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Personas from './componets/personas';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './componets/ingreso/Login';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/Home';
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -31,16 +32,9 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {/*<header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>*/}
-
-      <Login />
-      <Personas personas={personas} />
-      {data.map(item => (
-        <li key={item.id}>{item.nombre} {item.descripcion}</li>
-      ))}
-
+      <Routes>
+        <Route path="/" element={HomePage}/>
+      </Routes>
     </div>
   );
 }
