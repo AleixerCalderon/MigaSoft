@@ -1,12 +1,12 @@
 import Header from "../componets/Header";
 
-const HomePage = ()=>{
+const Bodega = ()=>{
     return(
         <>
             <Header/>
-            <h1>Este es el HomePage</h1>
+            <h1>Esto es Bodega</h1>
         </>
     );
 }
 
-export default HomePage;
+export default Bodega;

@@ -1,12 +1,12 @@
 import Header from "../componets/Header";
 
-const HomePage = ()=>{
+const Inventario =()=>{
     return(
         <>
             <Header/>
-            <h1>Este es el HomePage</h1>
+            <h1>Esta es la pagina de inventario</h1>
         </>
     );
 }
 
-export default HomePage;
+export default Inventario;

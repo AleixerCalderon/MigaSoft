@@ -23,3 +23,7 @@ ul{
     gap: 20px;
     color:#ffffff;
 }
+.link{
+    text-decoration: none;
+    color: #ffffff;
+}

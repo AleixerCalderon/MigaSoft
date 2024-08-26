@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
 import Usuarios from './pages/Usuarios';
+import Inventario from './pages/Inventario';
+import Bodega from './pages/Bodega';
+import Reportes from './pages/Reportes';
 
 
 function App() {
@@ -35,7 +38,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<HomePage/>}/>
+        <Route path="/inventario" element={<Inventario/>}/>
         <Route path="/usuarios" element={<Usuarios/>}/>
+        <Route path="/bodega" element={<Bodega/>}/>
+        <Route path="/reportes" element={<Reportes/>}/>
       </Routes>
     </div>
   );

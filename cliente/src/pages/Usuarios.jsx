@@ -4,7 +4,7 @@ const Usuarios = ()=>{
     return(
         <>
             <Header/>
-            <div>Usuarios</div>
+            <h1>Esta es la página de Usuarios</h1>
         </>
     );
 }

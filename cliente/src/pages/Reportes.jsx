@@ -1,12 +1,12 @@
 import Header from "../componets/Header";
 
-const HomePage = ()=>{
+const Reportes = ()=>{
     return(
         <>
             <Header/>
-            <h1>Este es el HomePage</h1>
+            <h1>Esto es Reportes</h1>
         </>
-    );
+    );   
 }
 
-export default HomePage;
+export default Reportes;
