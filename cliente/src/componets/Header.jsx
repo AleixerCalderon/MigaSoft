@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import "./header.css";
 import logo from "../assets/logo-migasoft.png";
 
@@ -9,8 +10,8 @@ const Header = ()=>{
             </div>
             <nav>
                 <ul className="link-list">
-                    <li><span className="link">Hola, Admin</span></li>
-                    <li><span className="link">Cerrar sesión</span></li>
+                    <li><Link className="link" to="/">Inicio</Link></li>
+                    <li><Link className="link" to="/usuarios">Usuarios</Link></li>
                 </ul>
             </nav>
         </header>

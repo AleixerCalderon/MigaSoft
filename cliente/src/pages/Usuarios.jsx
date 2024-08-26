@@ -1,7 +1,11 @@
+import Header from "../componets/Header";
 
 const Usuarios = ()=>{
     return(
-        <div>Usuarios</div>
+        <>
+            <Header/>
+            <div>Usuarios</div>
+        </>
     );
 }
 
