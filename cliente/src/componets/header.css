@@ -1,0 +1,29 @@
+header{
+    background-color: #0066FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+}
+header .logo{
+    width: 50vw;
+    text-align: left;
+}
+header nav{
+    width: 50vw;
+    text-align: end;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 20px;
+    color:#ffffff;
+}
+.link{
+    text-decoration: none;
+    color: #ffffff;
+}
