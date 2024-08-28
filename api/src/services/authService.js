@@ -1,16 +1,14 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import userRepository from '../repositories/usuarioRepository.js';
-import router from '../routes/authRoutes.js';
 const { JWT_SECRET } = process.env;
 
 class AuthService {
   async login(usuario, hashClave) {
     const user = await userRepository.getUserByUsername(usuario);
     if (!user || !(await user.validPassword(hashClave))) {
-      throw new Error('Invalid credentials');
+      throw new Error('Error de autenticación');
     }
-    const token = jwt.sign({ id: user.id, usuario: user.usuario }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, usuario: user.usuario }, JWT_SECRET, { expiresIn: '8h' });
     return { token };
   }
 
