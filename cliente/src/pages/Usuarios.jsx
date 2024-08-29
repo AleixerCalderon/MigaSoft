@@ -1,10 +1,16 @@
+import Content from "../componets/Content";
 import Header from "../componets/Header";
+import Sidebar from "../componets/Sidebar";
+import "./styles.css";
 
 const Usuarios = ()=>{
     return(
         <>
             <Header/>
-            <h1>Esta es la página de Usuarios</h1>
+            <div className="grid-container">
+                <Sidebar/>
+                <Content/>
+            </div>
         </>
     );
 }

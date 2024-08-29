@@ -1,0 +1,23 @@
+.grid-container{
+    display: grid;
+    gap: 20px;
+    grid-template:
+    "main"
+    "sidebar";    
+}
+.sidebar{
+    grid-area: sidebar;
+    background-color: #E8E8E8;
+}
+.main{
+    grid-area: main;
+    background-color: aqua;
+}
+
+
+@media screen (min-width: 768px;){
+    grid-template:
+    "sidebar main" auto/
+    400px auto;
+ 
+}
