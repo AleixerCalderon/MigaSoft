@@ -1,3 +1,6 @@
+.row>*{
+    padding: 0px;
+}
 .grid-container{
     display: grid;
     gap: 20px;
@@ -8,16 +11,36 @@
 .sidebar{
     grid-area: sidebar;
     background-color: #E8E8E8;
+    padding: 40px;
+}
+.sidebar-menu{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    flex-wrap: wrap;
+    margin:50px 0px;
+    li {
+        border-bottom: 1px solid #676767;
+        display: flex;
+        flex-direction: row;
+        width: 100%;padding-bottom: 20px;
+    }
+    li a{
+        text-decoration: none;
+        color: #4F4F4F;
+    }
 }
 .main{
     grid-area: main;
     background-color: aqua;
 }
-
-
-@media screen (min-width: 768px;){
-    grid-template:
-    "sidebar main" auto/
-    400px auto;
- 
+.content-p{
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100% - 200px);
 }
+.contenedor-p{
+}
+

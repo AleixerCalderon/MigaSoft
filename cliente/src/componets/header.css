@@ -4,8 +4,9 @@ header{
     justify-content: center;
     align-items: center;
     padding: 20px 30px;
+    height: 100px;
 }
-header .logo{
+header .brand{
     width: 50vw;
     text-align: left;
 }

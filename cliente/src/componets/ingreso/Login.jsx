@@ -57,9 +57,6 @@ const Login = () => {
               <Form.Group className="mb-4">
                 <Form.Label>Usuario</Form.Label>
                 <Form.Control type="text" onChange={(e)=>setUsername(e.target.value)} value={usuario} />
-                <Form.Text className="text-muted">
-                  Ingresa tu correo o nombre de usuario
-                </Form.Text>
               </Form.Group>
               <Form.Group className="mb-4" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
