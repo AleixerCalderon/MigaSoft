@@ -15,7 +15,7 @@ const Reportes = () => {
             <Sidebar />
           </Col>
           <Col lg={10}>
-            <Content />
+          <h1>Esto es Reportes</h1>
           </Col>
         </Row>
       </Container>

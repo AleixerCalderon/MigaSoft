@@ -15,7 +15,7 @@ const Inventario = () => {
             <Sidebar />
           </Col>
           <Col lg={10}>
-            <Content />
+            <h1>Esto es Inventario</h1>
           </Col>
         </Row>
       </Container>

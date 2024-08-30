@@ -15,7 +15,7 @@ const Bodega = () => {
             <Sidebar />
           </Col>
           <Col lg={10}>
-            <Content />
+          <h1>Esto es Bodega</h1>
           </Col>
         </Row>
       </Container>
