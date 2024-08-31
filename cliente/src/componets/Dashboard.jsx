@@ -1,6 +1,8 @@
+
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaShoppingCart, FaUsers, FaBox, FaChartBar, FaClipboardList, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faUsers, faBox, faChartBar, faClipboardList, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './dashboard.css'; // Importa el CSS
 
@@ -12,7 +14,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <Link to="/inventario" className="card text-decoration-none">
             <div className="card-body">
-              <FaShoppingCart size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faShoppingCart} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Inventario</h5>
             </div>
           </Link>
@@ -20,7 +22,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <Link to="/usuarios" className="card text-decoration-none">
             <div className="card-body">
-              <FaUsers size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faUsers} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Usuarios</h5>
             </div>
           </Link>
@@ -28,7 +30,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <Link to="/bodega" className="card text-decoration-none">
             <div className="card-body">
-              <FaBox size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faBox} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Bodega</h5>
             </div>
           </Link>
@@ -36,7 +38,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <Link to="/reportes" className="card text-decoration-none">
             <div className="card-body">
-              <FaChartBar size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faChartBar} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Reportes</h5>
             </div>
           </Link>
@@ -44,7 +46,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <div className="card text-decoration-none">
             <div className="card-body">
-              <FaClipboardList size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faClipboardList} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Órdenes</h5>
             </div>
           </div>
@@ -52,7 +54,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <div className="card text-decoration-none">
             <div className="card-body">
-              <FaCog size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faCog} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Configuraciones</h5>
             </div>
           </div>
@@ -60,7 +62,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <div className="card text-decoration-none">
             <div className="card-body">
-              <FaSignOutAlt size={50} className="text-dark" />
+              <FontAwesomeIcon icon={faSignOutAlt} size="2x" className="text-dark" />
               <h5 className="card-title text-dark">Cerrar Sesión</h5>
             </div>
           </div>
