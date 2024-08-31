@@ -1,4 +1,3 @@
-import Content from "../componets/Content";
 import Header from "../componets/Header";
 import Sidebar from "../componets/Sidebar";
 import Footer from "../componets/Footer";
@@ -16,7 +15,7 @@ const Reportes = () => {
             <Sidebar />
           </Col>
           <Col lg={10} md={9} sm={9} xs={12}>
-            <h1></h1>
+            <h1>Pantalla Reportes</h1>
           </Col>
         </Row>
       </Container>

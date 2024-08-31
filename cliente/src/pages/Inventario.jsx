@@ -16,7 +16,7 @@ const Inventario = () => {
             <Sidebar />
           </Col>
           <Col lg={10} md={9} sm={9} xs={12}>
-            <h1></h1>
+          <h1>Pantalla Inventario</h1>
           </Col>
         </Row>
       </Container>
