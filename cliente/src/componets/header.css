@@ -4,7 +4,7 @@ header{
     justify-content: center;
     align-items: center;
     padding: 20px 30px;
-    height: 100px;
+    height: 10vh;
 }
 header .brand{
     width: 50vw;
@@ -23,6 +23,12 @@ ul{
     justify-content: end;
     gap: 20px;
     color:#ffffff;
+    li a:hover{
+        opacity: 0.4;
+    }
+    li img{
+        width: 30px;
+    }
 }
 .link{
     text-decoration: none;
