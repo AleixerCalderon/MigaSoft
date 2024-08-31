@@ -1,0 +1,38 @@
+.container {
+    background-color: #f8f9fa; /* Fondo claro para el contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #343a40; /* Color del texto */
+  }
+  
+  .card {
+    border: none; /* Sin borde para las tarjetas */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: transform 0.3s; /* Efecto de hover */
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Escalado al pasar el mouse */
+  }
+  
+  .card-body {
+    text-align: center; /* Centrar el contenido de las tarjetas */
+    padding: 20px;
+  }
+  
+  .card-title {
+    margin-top: 10px;
+    font-size: 1.2rem; /* Tamaño de fuente */
+    color: #495057; /* Color del texto */
+  }
+  
+  .icon {
+    color: #007bff; /* Color de los iconos */
+  }
+  

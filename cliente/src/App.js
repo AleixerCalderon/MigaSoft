@@ -10,6 +10,7 @@ import Inventario from './pages/Inventario';
 import Bodega from './pages/Bodega';
 import Reportes from './pages/Reportes';
 import Login from './componets/ingreso/Login';
+import Dashboard from './components/Dashboard';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/usuarios" element={<Usuarios/>}/>
         <Route path="/bodega" element={<Bodega/>}/>
         <Route path="/reportes" element={<Reportes/>}/>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );
