@@ -8,7 +8,7 @@ import icon2 from "../assets/icon-roles.svg";
 import icon3 from "../assets/icon-bodega.svg";
 import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-ordenes.svg";
-import icon6 from "../assets/icon-usuarios.svg";
+import icon6 from "../assets/icon-user.svg";
 import icon7 from "../assets/icon-totalProductos.svg";
 
 const Dashboard = () => {
