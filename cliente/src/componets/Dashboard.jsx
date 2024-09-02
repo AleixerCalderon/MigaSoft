@@ -7,6 +7,9 @@ import icon1 from "../assets/icon-inventario.svg";
 import icon2 from "../assets/icon-roles.svg";
 import icon3 from "../assets/icon-bodega.svg";
 import icon4 from "../assets/icon-analitca.svg";
+import icon5 from "../assets/icon-ordenes.svg";
+import icon6 from "../assets/icon-usuarios.svg";
+import icon7 from "../assets/icon-totalProductos.svg";
 
 const Dashboard = () => {
   return (
@@ -73,7 +76,7 @@ const Dashboard = () => {
         <div className="col-md-4 mb-4">
           <div className="card text-decoration-none">
             <div className="card-body">
-              <img src={ico7} alt="toal de productos"/>
+              <img src={icon7} alt="toal de productos"/>
               <h5 className="card-title text-dark">Total productos</h5>
               <p className="text-dark" style={{ fontSize: '24px' }}>640</p>
             </div>
