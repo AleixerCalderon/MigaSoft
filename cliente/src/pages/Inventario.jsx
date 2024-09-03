@@ -111,7 +111,7 @@ const Inventario = () => {
                     <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
                   </div>
               </div>
-              <DataTable columns={columns} data={data} selectableRows pagination/>
+              <DataTable columns={columns} data={data} selectableRows pagination className="bordered"/>
             </div>
           </Col>
         </Row>
