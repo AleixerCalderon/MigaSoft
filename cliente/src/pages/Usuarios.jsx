@@ -1,12 +1,28 @@
 import Header from "../componets/Header";
+import Sidebar from "../componets/Sidebar";
+import Footer from "../componets/Footer";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./styles.css";
 
-const Usuarios = ()=>{
-    return(
-        <>
-            <Header/>
-            <h1>Esta es la página de Usuarios</h1>
-        </>
-    );
-}
+const Usuarios = () => {
+  return (
+    <>
+      <Header />
+      <Container fluid className="contenedor-p">
+        <Row className="content-p">
+          <Col lg={2} md={3} sm={3} xs={12} className="sidebar">
+            <Sidebar />
+          </Col>
+          <Col lg={10} md={9} sm={9} xs={12}>
+          <h1>Pantalla Usuarios</h1>
+          </Col>
+        </Row>
+      </Container>
+      <Footer />
+    </>
+  );
+};
 
 export default Usuarios;
