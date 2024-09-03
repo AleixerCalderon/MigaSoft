@@ -8,6 +8,7 @@ class AuthService {
     if (!user || !(await user.validPassword(hashClave))) {
       throw new Error('Error de autenticación');
     }
+    console.log(user);//TODO
     const token = jwt.sign({ id: user.id, usuario: user.usuario }, JWT_SECRET, { expiresIn: '8h' });
     return { token };
   }

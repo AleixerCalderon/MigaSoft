@@ -1,4 +1,5 @@
-import { User } from '../models/index.js';
+import { User, persona, roles } from '../models/index.js';
+
 
 class UsuarioRepository {
   async createUser(data) {
@@ -6,7 +7,20 @@ class UsuarioRepository {
   }
 
   async getUserByUsername(usuario) {
-    return await User.findOne({ where: { usuario } });
+    return await User.findOne({ where: { usuario },
+    include:[
+      {
+        model:persona,
+        as:'Personas',
+        attributes:['nombre','apellido'],
+      },
+      {
+        model:roles,
+        as :'Roles',
+        through:{attributes:[]},
+        attributes:['descripcion'],
+      }
+    ],});
   }
 
   async getUserById(id) {

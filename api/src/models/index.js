@@ -7,10 +7,17 @@ import usuarioModel from './usuario.js'
 import personaModel from './persona.js'
 import tipoIdentificacionModel from './tiposIdentificacion.js'
 
+import RolesModel from './Roles.js';
+//import RolesUsuarioModel from './RolesUsuario.js';
+
 // instancia del modelo
 const User = usuarioModel(sequelize);
 const persona = personaModel(sequelize);
+const roles = RolesModel(sequelize);
+
+//const rolesUsuario = RolesUsuarioModel(sequelize);
+
 const tipoIdentificacion = tipoIdentificacionModel(sequelize);
 
 sequelize.sync();
-export { sequelize, User, persona, tipoIdentificacion };
+export { sequelize, User, persona, tipoIdentificacion , roles };

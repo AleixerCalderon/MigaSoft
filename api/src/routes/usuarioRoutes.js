@@ -81,4 +81,5 @@ router.put('/:id', authMiddleware, usuarioController.updateUser);
 */
 router.delete('/:id', authMiddleware, usuarioController.deleteUser);
 
+
 export default router;
