@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import "./responsive.css";
 import Icon from "../assets/icon-inventarios.svg";
 
+
 const columns = [
 	{
 		name: 'Id',
