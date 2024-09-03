@@ -89,6 +89,12 @@ const personaModel = function(sequelize) {
       },
     ]
   });
+  Persona.associate = (models)=>{
+    Persona.hasOne(models.User,{
+      foreignKey:'idPersona', 
+      as:  'usuario'
+    });
+  };
   return Persona;
 };
 export default personaModel;

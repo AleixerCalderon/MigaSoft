@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const RolesModel = function(sequelize) {
-  return sequelize.define('Roles', {
+  const Roles = sequelize.define('Roles', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -37,5 +37,14 @@ const RolesModel = function(sequelize) {
       },
     ]
   });
+  Roles.associate = (models)=> {
+    Roles.belongsToMany(models.User,{
+      through:models.RolesUsuario,
+      foreignKey: 'idRol',
+      otherKey: 'idUsuario',
+      as:'usuarios'
+    });
+  };
+  return Roles;
 };
 export default RolesModel;

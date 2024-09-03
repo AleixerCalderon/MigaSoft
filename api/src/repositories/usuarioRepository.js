@@ -1,4 +1,4 @@
-import { User, persona, roles } from '../models/index.js';
+import { User, Persona, Roles } from '../models/index.js';
 
 
 class UsuarioRepository {
@@ -10,12 +10,12 @@ class UsuarioRepository {
     return await User.findOne({ where: { usuario },
     include:[
       {
-        model:persona,
+        model:Persona,
         as:'Personas',
         attributes:['nombre','apellido'],
       },
       {
-        model:roles,
+        model:Roles,
         as :'Roles',
         through:{attributes:[]},
         attributes:['descripcion'],

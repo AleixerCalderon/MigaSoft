@@ -8,9 +8,31 @@ class AuthService {
     if (!user || !(await user.validPassword(hashClave))) {
       throw new Error('Error de autenticación');
     }
-    console.log(user);//TODO
-    const token = jwt.sign({ id: user.id, usuario: user.usuario }, JWT_SECRET, { expiresIn: '8h' });
-    return { token };
+
+    const nombre = user.Personas?.nombre || '';
+    const apellido = user.Personas?.apellido || '';
+    const roles = user.Roles.map(rol => rol.descripcion);
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        usuario: user.usuario,
+        nombre,
+        apellido,
+        roles
+      },
+      JWT_SECRET,
+      { expiresIn: '8h' });
+    return { 
+      token,
+      user:{
+        id: user.id,
+        usuario: user.usuario,
+        nombre,
+        apellido,
+        roles
+      }
+    };
   }
 
   async register(data) {

@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const RolesUsuarioModel = function(sequelize) {
-  return sequelize.define('RolesUsuario', {
+  const RolesUsuario = sequelize.define('RolesUsuario', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -38,31 +38,32 @@ const RolesUsuarioModel = function(sequelize) {
     sequelize,
     tableName: 'RolesUsuario',
     timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "FK_RolesUsuario_Usuarios",
-        using: "BTREE",
-        fields: [
-          { name: "idUsuario" },
-        ]
-      },
-      {
-        name: "FK_RolesUsuario_Roles",
-        using: "BTREE",
-        fields: [
-          { name: "idRol" },
-        ]
-      },
-    ]
+    // indexes: [
+    //   {
+    //     name: "PRIMARY",
+    //     unique: true,
+    //     using: "BTREE",
+    //     fields: [
+    //       { name: "id" },
+    //     ]
+    //   },
+    //   {
+    //     name: "FK_RolesUsuario_Usuarios",
+    //     using: "BTREE",
+    //     fields: [
+    //       { name: "idUsuario" },
+    //     ]
+    //   },
+    //   {
+    //     name: "FK_RolesUsuario_Roles",
+    //     using: "BTREE",
+    //     fields: [
+    //       { name: "idRol" },
+    //     ]
+    //   },
+    // ]
   });
+  return RolesUsuario;
 };
 
 export default RolesUsuarioModel;

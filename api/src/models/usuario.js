@@ -78,6 +78,17 @@ const usuarioModel = function (sequelize) {
             },
         },
     });
+    User.associate = (models) => {
+        User.belongsTo(models.Persona, {
+            foreignKey: 'idPersona',
+            as: 'Personas'
+        });
+        User.belongsToMany(models.Roles, {
+            through: models.RolesUsuario,
+            foreignKey: 'idUsuario',
+            as: 'Roles'
+        });
+    };
     User.prototype.validPassword = async function (hashClave) {
         return await bcrypt.compare(hashClave, this.hashClave);
     };

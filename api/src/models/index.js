@@ -8,16 +8,22 @@ import personaModel from './persona.js'
 import tipoIdentificacionModel from './tiposIdentificacion.js'
 
 import RolesModel from './Roles.js';
-//import RolesUsuarioModel from './RolesUsuario.js';
+import RolesUsuarioModel from './RolesUsuario.js';
 
 // instancia del modelo
 const User = usuarioModel(sequelize);
-const persona = personaModel(sequelize);
-const roles = RolesModel(sequelize);
+const Persona = personaModel(sequelize);
+const Roles = RolesModel(sequelize);
+const RolesUsuario = RolesUsuarioModel(sequelize);
 
-//const rolesUsuario = RolesUsuarioModel(sequelize);
+//Asociar
+User.associate({Persona,Roles,RolesUsuario});
+Persona.associate({User});
+Roles.associate({User, RolesUsuario});
+
+
 
 const tipoIdentificacion = tipoIdentificacionModel(sequelize);
 
 sequelize.sync();
-export { sequelize, User, persona, tipoIdentificacion , roles };
+export { sequelize, User, Persona, tipoIdentificacion , Roles, RolesUsuario };
