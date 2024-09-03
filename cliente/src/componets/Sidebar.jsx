@@ -13,7 +13,7 @@ const Sidebar = () => {
         <ul className="sidebar-menu">
           <li>
           
-            <Link className="link" to="/">
+            <Link className="link" to="/home">
             <img src={icon5} alt="Inventario"/>Ir al inicio
             </Link>
           </li>
