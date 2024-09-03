@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #676767;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Capa_1">
+      <g id="handbag">
+        <path class="cls-1" d="M578.7,780.5H221.3c-76.9,0-139.5-62.6-139.5-139.5V209.2h636.3v431.8c0,76.9-62.6,139.5-139.5,139.5ZM145.5,272.8v368.2c0,41.8,34,75.8,75.8,75.8h357.3c41.8,0,75.8-34,75.8-75.8v-368.2H145.5Z"/>
+        <path class="cls-1" d="M559.2,336.3h-63.7v-159c0-52.7-42.8-95.5-95.5-95.5s-95.5,42.8-95.5,95.5v159h-63.7v-159c0-87.8,71.4-159.2,159.2-159.2s159.2,71.4,159.2,159.2v159Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

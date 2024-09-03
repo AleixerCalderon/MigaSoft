@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/AleixerCalderon/MigaSoft/static/css/main.2d731406.css",
+    "main.js": "/AleixerCalderon/MigaSoft/static/js/main.969f6d9b.js",
+    "static/js/453.9d61c983.chunk.js": "/AleixerCalderon/MigaSoft/static/js/453.9d61c983.chunk.js",
+    "static/media/logo-migasoft.png": "/AleixerCalderon/MigaSoft/static/media/logo-migasoft.b89e27a5457bc5127a2a.png",
+    "static/media/icon-roles.svg": "/AleixerCalderon/MigaSoft/static/media/icon-roles.d9721be24fb402455395799c85e761d5.svg",
+    "static/media/logo.svg": "/AleixerCalderon/MigaSoft/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/icon-inventario.svg": "/AleixerCalderon/MigaSoft/static/media/icon-inventario.0b60759facec8bf2cefbf21a9d6ba8b2.svg",
+    "static/media/icon-logout.svg": "/AleixerCalderon/MigaSoft/static/media/icon-logout.1e19912dfe2605b87599df80e32dfb11.svg",
+    "static/media/icon-user.svg": "/AleixerCalderon/MigaSoft/static/media/icon-user.781df5f0ea296b47be8975b6705b3671.svg",
+    "static/media/icon-analitca.svg": "/AleixerCalderon/MigaSoft/static/media/icon-analitca.be994f53c79476dc6644f40e5bd102ae.svg",
+    "static/media/icon-volver.svg": "/AleixerCalderon/MigaSoft/static/media/icon-volver.ade7ef41ed5ec6df155af16e42ebaf4f.svg",
+    "static/media/icon-bodega.svg": "/AleixerCalderon/MigaSoft/static/media/icon-bodega.e6c4a7b642a527a445eb14248e063215.svg",
+    "index.html": "/AleixerCalderon/MigaSoft/index.html",
+    "static/media/icon-inventarios.svg": "/AleixerCalderon/MigaSoft/static/media/icon-inventarios.c23857dd1ef5b0a03081c6efb98f87d8.svg",
+    "static/media/icon-totalProductos.svg": "/AleixerCalderon/MigaSoft/static/media/icon-totalProductos.eca896f7b74aeeba98db0d71a778835c.svg",
+    "static/media/icon-ordenes.svg": "/AleixerCalderon/MigaSoft/static/media/icon-ordenes.ad86d3b7f51e7f613d0a0e7518b7f781.svg",
+    "main.2d731406.css.map": "/AleixerCalderon/MigaSoft/static/css/main.2d731406.css.map",
+    "main.969f6d9b.js.map": "/AleixerCalderon/MigaSoft/static/js/main.969f6d9b.js.map",
+    "453.9d61c983.chunk.js.map": "/AleixerCalderon/MigaSoft/static/js/453.9d61c983.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d731406.css",
+    "static/js/main.969f6d9b.js"
+  ]
+}

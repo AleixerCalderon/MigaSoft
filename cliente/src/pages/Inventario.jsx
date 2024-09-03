@@ -16,18 +16,28 @@ const columns = [
     sortable: true,
 	},
   {
+		name: 'Código',
+		selector: row => row.codigo,
+    sortable: true,
+	},
+  {
 		name: 'Nombre',
 		selector: row => row.nombre,
     sortable: true,
 	},
-  {
-		name: 'Apellido',
-		selector: row => row.apellido,
+	{
+		name: 'Peso Gr.',
+		selector: row => row.peso,
     sortable: true,
 	},
-	{
-		name: 'Edad',
-		selector: row => row.edad,
+  {
+		name: 'Categoría',
+		selector: row => row.categoria,
+    sortable: true,
+	},
+  {
+		name: 'Diámetro In.',
+		selector: row => row.diametro,
     sortable: true,
 	},
   {
@@ -35,65 +45,127 @@ const columns = [
 		selector: row => row.cantidad,
     sortable: true,
 	},
+  {
+		name: 'Estado',
+		selector: row => row.estado,
+    sortable: true,
+	},
+  
 ];
 
 const data = [
-  	{
-		id: 1,
-		nombre: 'Maria',
-    apellido: 'Perez',
-		edad: '20',
-    cantidad: '350'
-	},
+
+  {
+    id: 1,
+    codigo: "B22726",
+    nombre: "Pan Perro Cluster",
+    peso: "830",
+    categoria: "Ajonjolí",
+    diametro: "no aplica",
+    cantidad: "100",
+    estado: "habilitado",
+    editar: ""
+  },
+  {
+    id: 2,
+    codigo: "B9685",
+    nombre: "Pan Hamburguesa",
+    peso: "850",
+    categoria: "Ajonjolí",
+    diametro: "5",
+    cantidad: "2000",
+    estado: "habilitado",
+    editar: ""
+  },
 	{
-		id: 2,
-		nombre: 'Juan',
-    apellido: 'Garcia',
-		edad: '42',
-    cantidad: '350'
-	},
-  {
-    id:3,
-    nombre: 'Ana',
-    apellido: 'Lopez',
-    edad: '25',
-    cantidad: '350'
+    id: 3,
+    codigo: "B9466",
+    nombre: "Pan Hamburguesa",
+    peso: "850",
+    categoria: "Artesanal",
+    diametro: "5",
+    cantidad: "800",
+    estado: "habilitado",
+    editar: ""
   },
   {
-    id:4,
-    nombre: 'Alex',
-    apellido: 'Rodriguez',
-    edad: '30',
-    cantidad: '350'
+    id: 4,
+    codigo: "B501238",
+    nombre: "Pan Hamburguesa Guadalupe",
+    peso: "625",
+    categoria: "Ajonjolí",
+    diametro: "5",
+    cantidad: "3000",
+    estado: "habilitado",
+    editar: ""
   },
   {
-    id:5,
-    nombre: 'Luis',
-    apellido: 'Diaz',
-    edad: '35',
-    cantidad: '350'
+    id: 5,
+    codigo: "B505354",
+    nombre: "Pan Tajado",
+    peso: "730",
+    categoria: "Tradicional",
+    diametro: "no aplica",
+    cantidad: "80",
+    estado: "habilitado",
+    editar: ""
   },
   {
-    id:6,
-    nombre: 'Eva',
-    apellido: 'Martinez',
-    edad: '40',
-    cantidad: '350'
+    id: 6,
+    codigo: "B9673",
+    nombre: "Pan Hamburguesa Brioche",
+    peso: "850",
+    categoria: "Brillo",
+    diametro: "5",
+    cantidad: "No Aplica",
+    estado: "inhabilitado",
+    editar: ""
   },
   {
-    id:7,
-    nombre:'Laura',
-    apellido: 'Hernandez',
-    edad: '45',
-    cantidad: '350'
+    id: 7,
+    codigo: "B22726",
+    nombre: "Pan Perro Cluster",
+    peso: "830",
+    categoria: "Ajonjolí",
+    diametro: "no aplica",
+    cantidad: "100",
+    estado: "inhabilitado",
+    editar: ""
   },
   {
-    id:8,
-    nombre: 'Sofia',
-    apellido: 'Gutierrez',
-    edad: '50',
-    cantidad: '350'
+    id: 8,
+    codigo: "B22726",
+    nombre: "Pan Perro Cluster",
+    peso: "830",
+    categoria: "Ajonjolí",
+    diametro: "no aplica",
+    cantidad: "100",
+    estado: "inhabilitado",
+    editar: ""
   },
+  {
+    id: 9,
+    codigo: "B22726",
+    nombre: "Pan Perro Cluster",
+    peso: "830",
+    categoria: "Ajonjolí",
+    diametro: "no aplica",
+    cantidad: "100",
+    estado: "inhabilitado",
+    editar: ""
+  },
+  {
+    id: 10,
+    codigo: "B22726",
+    nombre: "Pan Perro Cluster",
+    peso: "830",
+    categoria: "Ajonjolí",
+    diametro: "no aplica",
+    cantidad: "100",
+    estado: "inhabilitado",
+    editar: ""
+  },
+
 ]
 
 const Inventario = () => {
