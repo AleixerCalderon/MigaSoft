@@ -94,6 +94,38 @@ const data = [
     cantidad: '350'
   },
 ]
+const paginationComponentOptions = {
+	rowsPerPageText: 'Filas por página',
+	rangeSeparatorText: 'de',
+	selectAllRowsItem: true,
+	selectAllRowsItemText: 'Todos',
+};
+
+const customStyles = {
+	rows: {
+		style: {
+			minHeight: '60px',
+      fontSize:"1em" // override the row height
+		},
+	},
+	headCells: {
+		style: {
+			fontSize: '1.3em',
+      fontWeight: 'bold',
+      backgroundColor: '#4F4F4F',
+      color:'#ffffff',
+		},
+	},
+	cells: {
+		style: {
+			paddingLeft: '8px', // override the cell padding for data cells
+			paddingRight: '8px',
+      borderStyle:"solid",
+      borderColor:"#E5E5E5",
+      borderWidth:"1px",
+		},
+	},
+};
 
 const Inventario = () => {
   return (
@@ -111,7 +143,7 @@ const Inventario = () => {
                     <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
                   </div>
               </div>
-              <DataTable columns={columns} data={data} selectableRows pagination className="bordered"/>
+              <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
             </div>
           </Col>
         </Row>

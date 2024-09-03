@@ -1,6 +1,9 @@
 :root{
     --sidebar-bg-color:#E8E8E8;
 }
+body{
+    font-family: "Inter", sans-serif;
+}
 .row>*{
     padding: 0px;
 }
@@ -52,29 +55,24 @@
 .content-p{
     display: flex;
     flex-wrap: wrap;
-    height: 80vh;
+    min-height: 556px;
+    
 }
 .contenedor-p{
-    height: 80vh;
 }
 .contenedor-p h2{
     
 }
 .contenido-tablas{
     width: 80%;
-    margin: auto;
-}
-.hudJpJ{
-    background-color: #4F4F4F!important;
-    color:#ffffff;
-    font-size: 1.3em;
+    margin: 50px auto;
+    
 }
 .header-table{
     display: flex;
     flex-direction: row;
     align-content: start;
     gap: 20px;
-    padding-top: 40px;
 }
 .header-table .titulo{
     display: flex;
@@ -88,6 +86,7 @@
 .header-table h2{
     color: #5B5B5B;
     margin-left: 10px;
+    font-weight: 600;
 }
 .hDPlLz{
     justify-content: center!important;
