@@ -35,7 +35,7 @@ const columns = [
     sortable: true,
 	},
 ];
-
+//Diego
 const data = [
   	{
 		id: 1,
