@@ -24,7 +24,7 @@ const Dashboard = () => {
             </div>
           </Link>
         </div>
-        <div className="col-md-4 mb-4">
+        <div className="col-md-3 mb-4">
           <Link to="/usuarios" className="card text-decoration-none">
             <div className="card-body">
               <img src={icon2} alt="Usuarios"/>

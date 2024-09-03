@@ -12,6 +12,7 @@
   }
   
   .card {
+    background-color: #0066FF;
     border: none; /* Sin borde para las tarjetas */
     border-radius: 8px; /* Bordes redondeados */
     transition: transform 0.3s; /* Efecto de hover */
