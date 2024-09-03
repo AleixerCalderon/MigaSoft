@@ -1,0 +1,12 @@
+
+@media (max-width:768px) {
+    .sidebar{
+        
+    }
+}
+
+@media (max-width:576px) {
+    .sidebar{
+        display: none;
+    }
+}

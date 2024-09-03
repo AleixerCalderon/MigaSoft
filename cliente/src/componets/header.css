@@ -25,6 +25,7 @@ ul{
     color:#ffffff;
     li a:hover{
         opacity: 0.4;
+        transition: opacity .4s;
     }
     li img{
         width: 30px;

@@ -1,10 +1,10 @@
 import Header from "../componets/Header";
 import Sidebar from "../componets/Sidebar";
+import Footer from "../componets/Footer";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles.css";
-import Footer from "../componets/Footer";
 
 const Usuarios = () => {
   return (

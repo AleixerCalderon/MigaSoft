@@ -57,4 +57,37 @@
 .contenedor-p{
     height: 80vh;
 }
-
+.contenedor-p h2{
+    
+}
+.contenido-tablas{
+    width: 80%;
+    margin: auto;
+}
+.hudJpJ{
+    background-color: #4F4F4F!important;
+    color:#ffffff;
+}
+.header-table{
+    display: flex;
+    flex-direction: row;
+    align-content: start;
+    gap: 20px;
+    padding-top: 40px;
+}
+.header-table .titulo{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    margin-bottom: 20px;
+}
+.header-table .titulo img{
+    width: 50px;
+}
+.header-table h2{
+    color: #5B5B5B;
+    margin-left: 10px;
+}
+.hDPlLz{
+    justify-content: center!important;
+}
