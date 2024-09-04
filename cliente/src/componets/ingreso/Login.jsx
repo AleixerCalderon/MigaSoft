@@ -44,12 +44,12 @@ const Login = () => {
   return (
     <Container fluid className="ingreso">
       <Row>
-        <Col></Col>
-        <Col>
+        <Col sm={2} xs={1}></Col>
+        <Col sm={8} xs={10}>
           <div className="logo">
             <img src={logo} alt="MigaSoft" />
           </div>
-          <div className="">
+          <div className="content-form">
             <Form className="form-login" onSubmit={handleLogin}>
               <div className="text-center mb-4 form-title">
                 <h3>Formulario de Ingreso</h3>
@@ -76,7 +76,7 @@ const Login = () => {
           </div>
           <div className="footer">© Dev By Migasoft 2024</div>
         </Col>
-        <Col></Col>
+        <Col sm={2} xs={1}></Col>
       </Row>
     </Container>
   );

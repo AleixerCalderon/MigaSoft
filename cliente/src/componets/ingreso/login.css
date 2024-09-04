@@ -1,5 +1,4 @@
 .ingreso{
-    height: 100vh;
     background: rgb(0,67,168);
     background: linear-gradient(0deg, rgba(0,67,168,1) 0%, rgba(0,102,255,1) 100%);
 }
@@ -10,7 +9,12 @@
     width: 180px;
     margin-bottom: 20px;
 }
+.content-form{
+    max-width: 800px;
+    margin: auto;
+}
 .footer{
     color: #8FBDFF;
     margin-top: 30px;
+    margin-bottom: 30px;
 }

@@ -222,7 +222,6 @@ const Usuarios = () => {
           </Col>
 
           <Col lg={10} md={9} sm={9} xs={12}>
-          <h1>Pantalla Usuarios</h1>
           <div className="contenido-tablas">
               <div className="header-table">
                   <div className="titulo">
