@@ -204,11 +204,15 @@ const Inventario = () => {
   return (
     <>
       <Header />
+
       <Container fluid className="contenedor-p">
+
         <Row className="content-p">
+
           <Col lg={3} md={4} sm={12} xs={12} className="sidebar">
             <Sidebar />
           </Col>
+
           <Col lg={9} md={8} sm={12} xs={12}>
             <div className="contenido-tablas">
               <div className="header-table">
@@ -219,8 +223,11 @@ const Inventario = () => {
               <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
             </div>
           </Col>
+
         </Row>
+
       </Container>
+      
       <Footer />
     </>
   );
