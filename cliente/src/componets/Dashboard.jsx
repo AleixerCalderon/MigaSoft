@@ -1,4 +1,3 @@
-
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
@@ -10,78 +9,33 @@ import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-ordenes.svg";
 import icon6 from "../assets/icon-user.svg";
 import icon7 from "../assets/icon-totalProductos.svg";
+import icon8 from "../assets/icon-cerrarSesion.svg";
 
 const Dashboard = () => {
   return (
     <div className="container mt-5">
-      <h1 className="text-dark">Bienvenido</h1>
+      <h1 className="text-dark mt-5 margin-60">Bienvenido</h1>
       <div className="row text-center">
-        <div className="col-md-4 mb-4">
-          <Link to="/inventario" className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon1} alt="Inventario"/>
-              <h5 className="card-title text-dark">Inventario</h5>
-            </div>
-          </Link>
-        </div>
-        <div className="col-md-4 mb-4">
-          <Link to="/usuarios" className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon2} alt="Usuarios"/>
-              <h5 className="card-title text-dark">Usuarios</h5>
-            </div>
-          </Link>
-        </div>
-        <div className="col-md-4 mb-4">
-          <Link to="/bodega" className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon3} alt="Bodega"/>
-              <h5 className="card-title text-dark">Bodega</h5>
-            </div>
-          </Link>
-        </div>
-        <div className="col-md-4 mb-4">
-          <Link to="/reportes" className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon4} alt="Reportes"/>
-              <h5 className="card-title text-dark">Reportes</h5>
-            </div>
-          </Link>
-        </div>
-        <div className="col-md-4 mb-4">
-          <div className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon5} alt="Ordenes"/>
-              <h5 className="card-title text-dark">Órdenes</h5>
-            </div>
+        {[
+          { to: "/inventario", icon: icon1, title: "Inventario" },
+          { to: "/usuarios", icon: icon2, title: "Usuarios" },
+          { to: "/bodega", icon: icon3, title: "Bodega" },
+          { to: "/reportes", icon: icon4, title: "Reportes" },
+          { to: "/ordenes", icon: icon5, title: "Órdenes" },
+          { to: "/configuraciones", icon: icon6, title: "Configuraciones" },
+          { to: "/cerrar-sesion", icon: icon8, title: "Cerrar Sesión" },
+          { to: "/total-productos", icon: icon7, title: "Total productos", extra: <p className="text-ligh" style={{ fontSize: '24px' }}>640</p> }
+        ].map((card, index) => (
+          <div key={index} className="col-md-4 mb-4">
+            <Link to={card.to} className="card text-decoration-none">
+              <div className="card-body">
+                <img src={card.icon} alt={card.title} />
+                <h5 className="card-title text-light">{card.title}</h5>
+                {card.extra}
+              </div>
+            </Link>
           </div>
-        </div>
-        <div className="col-md-4 mb-4">
-          <div className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon6} alt="Configuraciones"/>
-              <h5 className="card-title text-dark">Configuraciones</h5>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4 mb-4">
-          <div className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon2} alt="cerrrar secion"/>
-              <h5 className="card-title text-dark">Cerrar Sesión</h5>
-            </div>
-          </div>
-        </div>
-        {/* Tarjeta informativa para Total productos */}
-        <div className="col-md-4 mb-4">
-          <div className="card text-decoration-none">
-            <div className="card-body">
-              <img src={icon7} alt="toal de productos"/>
-              <h5 className="card-title text-dark">Total productos</h5>
-              <p className="text-dark" style={{ fontSize: '24px' }}>640</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="button-group mt-4">
         <Link to="/inventario" className="btn btn-light text-dark m-2">Inventario</Link>

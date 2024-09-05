@@ -3,15 +3,18 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #fff;
-        fill-rule: evenodd;
+        fill: none;
+        stroke: white;
+        stroke-width: 30;
       }
     </style>
   </defs>
   <g>
     <g id="Capa_1">
       <g id="Capa_1-2" data-name="Capa_1">
-        <path class="cls-1" d="M100,100h600v600H100Zm150,50v50h300V150Zm0,100v50h300V250Zm0,100v50h300V350Zm0,100v50h300V450Zm0,100v50h300V550Z"/>
+        <circle class="cls-1" cx="400" cy="400" r="333.3" />
+        <line x1="300" y1="300" x2="500" y2="500" class="cls-1"/>
+        <line x1="500" y1="300" x2="300" y2="500" class="cls-1"/>
       </g>
     </g>
   </g>
