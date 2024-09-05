@@ -6,7 +6,7 @@ class BodegaRepository {
         include:[
           {
             model:TiposBodega,
-            as:'TiposBodega',
+            as:'tiposBodega',
             attributes:['nombre'],
           }
         ]

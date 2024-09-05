@@ -46,8 +46,8 @@ const TiposBodegaModel = function(sequelize) {
     ]
   });
   TiposBodega.associate = (models)=>{
-    TiposBodega.hasOne(models.Bodegas,{
-      foreignKey:'idBodega', 
+    TiposBodega.hasMany(models.Bodegas,{
+      foreignKey:'idTipoBodega', 
       as:  'Bodega'
     });
   };
