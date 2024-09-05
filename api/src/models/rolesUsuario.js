@@ -26,12 +26,12 @@ const RolesUsuarioModel = function(sequelize) {
     },
     createdAt: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW
     },
     updatedAt: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW
     }
   }, {

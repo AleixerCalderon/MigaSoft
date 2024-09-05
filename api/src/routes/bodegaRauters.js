@@ -1,24 +1,25 @@
 import express from "express";
 import BodegaController from "../controllers/bodegasController.js";
-import db from "../utils/db.js";
-const routerBodega = express.Router();
+import authMiddleware from '../middlewares/authMiddleware.js';
 
-const bodegasController = new BodegaController();
+const router = express.Router();
 
-// routerBodega.get('/',(req,res)=>{
-//     const query = 'select * from Bodegas';
-//         db.query(query, (err, results) => {
-//             if (err) {
-//                 res.status(500).send(err);
-//             } else {
-//                 res.json(results);
-//             }
 
-//         });
-// });
-routerBodega.get('/',bodegasController.getAllBodegas);
+/**
+* @swagger
+* /bodegas:
+*   get:
+*     summary: Lista bodegas activas 
+*     description: Obtener la lista de bodegas activas .
+*     tags:
+*       - Bodegas
+*     responses:
+*       204:
+*         description: Usuario eliminado exitosamente.
+*       400:
+*         description: Error en la solicitud.
+*/
+router.get('/', authMiddleware, BodegaController.getAllBodegas);
 
-//routerBodega.post('/',bodegasController.addBodegas);
-//routerBodega.get('/:id',bodegasController.getBodegaById);
 
-export default routerBodega;
+export default router;

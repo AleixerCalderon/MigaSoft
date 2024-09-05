@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const TiposBodegaModel = function(sequelize) {
-  return sequelize.define('TiposBodega', {
+  const TiposBodega = sequelize.define('TiposBodega', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -22,12 +22,12 @@ const TiposBodegaModel = function(sequelize) {
     },
     createdAt: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW
     },
     updatedAt: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW
     }
   }, {
@@ -45,5 +45,12 @@ const TiposBodegaModel = function(sequelize) {
       },
     ]
   });
+  TiposBodega.associate = (models)=>{
+    TiposBodega.hasOne(models.Bodegas,{
+      foreignKey:'idBodega', 
+      as:  'Bodega'
+    });
+  };
+  return TiposBodega;
 };
 export default TiposBodegaModel;

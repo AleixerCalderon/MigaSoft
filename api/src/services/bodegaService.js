@@ -1,19 +1,14 @@
-import Bodega from '../models/bodega.js';
-import db from '../utils/db.js';
+import BodegaRepository from '../repositories/bodegaRepository.js';
 
 class BodegaService {
-    constructor() {
-        this.bodega = new Bodega();
-    }
-    getAllBodegas = async () => {         
-               
-        return this.bodega.findAll();
+    async getAllBodegas() {
+        return await BodegaRepository.getAllBodegas();
     };
-    addBodega = async (bodega) => {
-        return this.bodega.add(bodega);
-    };
-    getBodegaById = async (id) => {
-        return this.bodega.findById(id);
-    };
+    // async addBodega(bodega)  {
+    //     return await Bodega.add(bodega);
+    // };
+    // async getBodegaById (id) {
+    //     return await Bodega.findById(id);
+    // };
 }
-export default BodegaService;
+export default new BodegaService();
