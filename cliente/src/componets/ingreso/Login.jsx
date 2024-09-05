@@ -45,8 +45,7 @@ const Login = () => {
   return (
     <Container fluid className="ingreso">
       <Row>
-        <Col sm={2} xs={1}></Col>
-        <Col sm={8} xs={10}>
+        <Col lg={10} md={8} sm={10} xs={12}>
           <div className="logo">
             <img src={logo} alt="MigaSoft" />
           </div>
@@ -77,7 +76,6 @@ const Login = () => {
           </div>
           <div className="footer">© Dev By Migasoft 2024</div>
         </Col>
-        <Col sm={2} xs={1}></Col>
       </Row>
     </Container>
   );
