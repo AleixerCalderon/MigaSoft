@@ -20,9 +20,13 @@
   justify-content: center;
   margin: auto; 
   border-radius: 10px;
-  background-color: #0066FF;
+  background-color: #928b90;
   color: #ffffff;
-}
+ }
+
+.card:hover {
+  background-color: #0066ff; 
+  }
 .margin-60 {
   margin: 60px;
 }
@@ -35,4 +39,22 @@
 
 .card img {
   max-height: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+.logo-container {
+  background-color:#676366;
+  padding: 15px; /* Ajusta el padding según sea necesario */
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
+.logo-container:hover {
+  background-color: #0066ff;
+}
+
+.logo-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+ 
 }
