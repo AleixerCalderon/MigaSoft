@@ -15,7 +15,7 @@ const router = express.Router();
 *       - Bodegas
 *     responses:
 *       204:
-*         description: Usuario eliminado exitosamente.
+*         description: Lista de bodegas exitoso.
 *       400:
 *         description: Error en la solicitud.
 */

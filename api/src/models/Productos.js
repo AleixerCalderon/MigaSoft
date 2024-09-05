@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const ProductosModel = function(sequelize) {
-  return sequelize.define('Productos', {
+  const Productos = sequelize.define('Productos', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -57,5 +57,6 @@ const ProductosModel = function(sequelize) {
       },
     ]
   });
+  return Productos;
 };
 export default ProductosModel;

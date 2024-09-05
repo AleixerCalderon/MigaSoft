@@ -34,6 +34,7 @@ const Login = () => {
       const data = await response.json();
       //Guardamos el token en el loCalStore del Navegador
       localStorage.setItem("token", data.token);
+      localStorage.setItem("usuario", data.user.nombre + " " + data.user.apellido);
       //Redireccionamos a la pagina principal
       window.location.href = "/home";
     } catch (error) {

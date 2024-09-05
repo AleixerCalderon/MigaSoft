@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const InventariosBodegaModel = function(sequelize) {
-  return sequelize.define('InventariosBodega', {
+  const Inventario = sequelize.define('InventariosBodega', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -28,16 +28,16 @@ const InventariosBodegaModel = function(sequelize) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
-    },
-    updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
-    }
+    // createdAt: {
+    //     type: DataTypes.DATE,
+    //     allowNull: true,
+    //     defaultValue: Sequelize.NOW
+    // },
+    // updatedAt: {
+    //     type: DataTypes.DATE,
+    //     allowNull: true,
+    //     defaultValue: Sequelize.NOW
+    // }
   }, {
     sequelize,
     tableName: 'InventariosBodega',
@@ -67,5 +67,16 @@ const InventariosBodegaModel = function(sequelize) {
       },
     ]
   });
+  Inventario.associate = (models)=> {
+    Inventario.belongsTo(models.Bodegas, {
+      foreignKey: 'idBodega',
+      as: 'Bodega'
+  });  
+  Inventario.belongsTo(models.Lotes, {
+    foreignKey: 'idLote',
+    as: 'Lote'
+});   
+  };
+  return Inventario;
 };
 export default InventariosBodegaModel;

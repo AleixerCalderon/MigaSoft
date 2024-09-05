@@ -1,4 +1,4 @@
-import config  from "../config/config.js";
+import config from "../config/config.js";
 import { Sequelize } from "sequelize";
 const sequelize = new Sequelize(config.development);
 
@@ -6,11 +6,13 @@ const sequelize = new Sequelize(config.development);
 import usuarioModel from './usuario.js'
 import personaModel from './persona.js'
 import tipoIdentificacionModel from './tiposIdentificacion.js'
-
 import RolesModel from './Roles.js';
 import RolesUsuarioModel from './RolesUsuario.js';
 import BodegasModel from "./Bodegas.js";
 import TiposBodegaModel from "./TiposBodega.js";
+import InventariosBodegaModel from "./InventariosBodega.js";
+import LotesModel from "./Lotes.js";
+import ProductosModel from "./Productos.js";
 
 // instancia del modelo
 const User = usuarioModel(sequelize);
@@ -19,15 +21,31 @@ const Roles = RolesModel(sequelize);
 const RolesUsuario = RolesUsuarioModel(sequelize);
 const Bodegas = BodegasModel(sequelize);
 const TiposBodega = TiposBodegaModel(sequelize);
-
-//Asociar
-User.associate({Persona,Roles,RolesUsuario});
-Persona.associate({User});
-Roles.associate({User, RolesUsuario});
-Bodegas.associate({TiposBodega});
-TiposBodega.associate({Bodegas});
-
+const Inventario = InventariosBodegaModel(sequelize);
+const Lotes = LotesModel(sequelize);
+const Productos = ProductosModel(sequelize);
 const tipoIdentificacion = tipoIdentificacionModel(sequelize);
 
+//Asociar
+User.associate({ Persona, Roles, RolesUsuario });
+Persona.associate({ User });
+Roles.associate({ User, RolesUsuario });
+Bodegas.associate({ TiposBodega });
+TiposBodega.associate({ Bodegas });
+Inventario.associate({ Bodegas, Lotes });
+Lotes.associate({ Productos });
+
 sequelize.sync();
-export { sequelize, User, Persona, tipoIdentificacion , Roles, RolesUsuario, Bodegas, TiposBodega };
+export {
+    sequelize,
+    User,
+    Persona,
+    tipoIdentificacion,
+    Roles,
+    RolesUsuario,
+    Bodegas,
+    TiposBodega,
+    Inventario,
+    Lotes,
+    Productos
+};

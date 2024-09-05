@@ -7,6 +7,7 @@ import setupSwagger from './swagger.js';
 import authRoutes from './routes/authRoutes.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import bodegaRoutes from './routes/bodegaRauters.js';
+import InventarioRoutes from './routes/inventarioRouters.js';
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/users', usuarioRoutes);
-app.use('/bodegas',bodegaRoutes)
+app.use('/bodegas', bodegaRoutes);
+app.use('/Inventario', InventarioRoutes);
 // //END ** ** rutas **
 
 sequelize.authenticate().then(() => {

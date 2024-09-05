@@ -1,7 +1,7 @@
-import {Sequelize, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 
-const LotesModel = function(sequelize) {
-  return sequelize.define('Lotes', {
+const LotesModel = function (sequelize) {
+  const Lotes = sequelize.define('Lotes', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -33,14 +33,14 @@ const LotesModel = function(sequelize) {
       allowNull: false
     },
     createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     },
     updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     }
   }, {
     sequelize,
@@ -64,5 +64,12 @@ const LotesModel = function(sequelize) {
       },
     ]
   });
+  Lotes.associate = (models) => {
+    Lotes.belongsTo(models.Productos, {
+      foreignKey: 'idProducto',
+      as: 'Producto'
+    });
+  };
+  return Lotes;
 };
 export default LotesModel;
