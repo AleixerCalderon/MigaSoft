@@ -1,4 +1,5 @@
 import { Productos } from '../models/index.js';
+import {Op}  from "sequelize";
 
 
 class ProductoRepository {
@@ -6,8 +7,15 @@ class ProductoRepository {
     return await Productos.create(data);
   }
 
-  async getProductoByNombre(producto) {
-    return await Productos.findAll({ where: { nombre : producto }});
+  async getProductoByNombre(nombre) {
+    return await Productos.findAll({
+      where: {
+        nombre: {
+          [Op.like]: `%${nombre}%`
+        }
+      }
+      //,attributes:['nombre']
+    });
   }
 
   async getProductoById(id) {
