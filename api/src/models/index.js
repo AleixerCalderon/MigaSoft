@@ -35,6 +35,7 @@ TiposBodega.associate({ Bodegas });
 Inventario.associate({ Bodegas, Lotes });
 Lotes.associate({ Productos });
 
+
 sequelize.sync();
 export {
     sequelize,
