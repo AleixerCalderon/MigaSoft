@@ -8,6 +8,7 @@ import authRoutes from './routes/authRoutes.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import bodegaRoutes from './routes/bodegaRauters.js';
 import InventarioRoutes from './routes/inventarioRouters.js';
+import ProductoRouters from './routes/productoRouters.js'
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/auth', authRoutes);
 app.use('/users', usuarioRoutes);
 app.use('/bodegas', bodegaRoutes);
 app.use('/Inventario', InventarioRoutes);
+app.use('/producto', ProductoRouters);
 // //END ** ** rutas **
 
 sequelize.authenticate().then(() => {
