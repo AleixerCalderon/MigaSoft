@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./responsive.css";
 import Icon from "../assets/icon-inventarios.svg";
-import IconAdd from "../assets/icon-add.svg";
+import IconAdd from "../assets/icon-agregar.svg";
 
 
 const columns = [

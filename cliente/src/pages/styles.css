@@ -165,7 +165,6 @@ body{
 }
 .header-table h2{
     color: #5B5B5B;
-    margin-left: 10px;
     font-weight: 600;
 }
 .hDPlLz{
@@ -182,5 +181,8 @@ body{
         .reporte-item{
             margin-bottom: 20px;
         }
+    }
+    .add-item h4{
+        display: none;
     }
 }
