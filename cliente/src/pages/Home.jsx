@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../componets/Header";
-import Dashboard from "../componets/Dashboard";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -53,6 +53,7 @@ const HomePage = ()=>{
         };
         fetchData();
     },[]);
+    const route="/"
     return(
         <>
             <Header/>
@@ -67,7 +68,7 @@ const HomePage = ()=>{
                             (menu)=>(
                             <Col className="dash-menu">
                                 <div className="dash-menu-item">
-                                    <a href="#">
+                                    <a href={menu}>
                                         <img src={getMenu(menu)} alt={menu} />
                                         <h4>{menu}</h4>
                                     </a>
@@ -76,7 +77,7 @@ const HomePage = ()=>{
                         )
                         )}
                 </Row>
-                <Row>
+                <Row className="reporte">
                     <Col>
                         <div className="reporte-item">
                             <img src={IconlistUsers} alt="" />

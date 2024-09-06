@@ -17,7 +17,7 @@ body{
 .sidebar{
     grid-area: sidebar;
     background-color: var(--sidebar-bg-color);
-    padding: 20px;
+    padding: 20px 0px 0px 30px;
 }
 .sidebar-menu{
     list-style: none;
@@ -53,7 +53,6 @@ body{
     background-color: aqua;
 }
 .content-p{
-    width: 100vw;
     min-height: 556px;
     
 }
@@ -62,6 +61,19 @@ body{
 .contenedor-p h2{
     
 }
+.add-item{
+    margin-left: auto;
+    align-items: center !important;
+    h4{
+        font-size: 18px;
+        margin-right: 20px;
+        color: #4F4F4F;
+    }
+    img{
+        width: 30px!important;
+    }
+}
+
 .dashboard{
     max-width: 1280px;
     margin: auto;
@@ -106,25 +118,28 @@ body{
     }
 }
 
-.reporte-item{
-    background-color: #ECECEC;
-    padding: 20px 30px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    max-width: 350px;
-    margin: auto;
-    img{
-        width: 80px;
-    }
-    p{
-        font-size: 18px;
-        text-align: left;
-        span{
-            display: block;
-            font-size: 2em;
-            font-weight: 800;
-            color: #676767;
+.reporte{
+    padding-bottom: 40px;
+    .reporte-item{
+        background-color: #ECECEC;
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        max-width: 350px;
+        margin: auto;
+        img{
+            width: 80px;
+        }
+        p{
+            font-size: 18px;
+            text-align: left;
+            span{
+                display: block;
+                font-size: 2em;
+                font-weight: 800;
+                color: #676767;
+            }
         }
     }
 }
@@ -161,6 +176,11 @@ body{
     .dashboard{
         .dash-menu{
             flex-direction: column;
+        }
+    }
+    .reporte{
+        .reporte-item{
+            margin-bottom: 20px;
         }
     }
 }
