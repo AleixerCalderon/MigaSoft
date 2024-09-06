@@ -10,20 +10,23 @@ import IconInventario from "../assets/icon-inventario-v2.svg";
 import IconBodega from "../assets/icon-bodega-v2.svg";
 import IconAnalitica from "../assets/icon-analitca-v2.svg";
 import IconlistUsers from "../assets/icon-listUsers.svg";
+import IconlistOrden from "../assets/icon-listOrdenes.svg";
+import IconlistProducts from "../assets/icon-totalProducts.svg";
 
 const HomePage = ()=>{
     const [usuario, setUsuario]=useState(null);
     const userId = 2;
-    const roles = ["admin", "bodeguero","vendedor","secretaria"];
-    const getRole =(rol)=>{
+    const menu = ["Inventario", "Usuarios","Bodega","Reportes"];
+    const getMenu =(rol)=>{
         switch (rol) {
-            case "admin":
-                return(IconUser);
-            case "bodeguero":
+            case "Inventario":
                 return(IconInventario);
-            case "vendedor":
-                return(IconlistUsers);
-                
+            case "Usuarios":
+                return(IconUser);
+            case "Bodega":
+                return(IconBodega);
+            case "Reportes":
+                return(IconAnalitica);
             default:
                 return(null);
         }
@@ -60,13 +63,13 @@ const HomePage = ()=>{
                     </Col>
                 </Row>
                 <Row>
-                        {roles.map(
-                            (rol)=>(
+                        {menu.map(
+                            (menu)=>(
                             <Col className="dash-menu">
                                 <div className="dash-menu-item">
                                     <a href="#">
-                                        <img src={getRole(rol)} alt={rol} />
-                                        <h4>{rol}</h4>
+                                        <img src={getMenu(menu)} alt={menu} />
+                                        <h4>{menu}</h4>
                                     </a>
                                 </div>  
                             </Col>
@@ -83,8 +86,24 @@ const HomePage = ()=>{
                             </p>
                         </div>
                     </Col>
-                    <Col></Col>
-                    <Col></Col>
+                    <Col>
+                        <div className="reporte-item">
+                            <img src={IconlistProducts} alt="" />
+                            <p>
+                                Total productos
+                                <span>640</span>
+                            </p>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className="reporte-item">
+                            <img src={IconlistOrden} alt="" />
+                            <p>
+                                Ordenes creadas
+                                <span>1680</span>
+                            </p>
+                        </div>
+                    </Col>
                 </Row>
             </Container>
             <Footer/>

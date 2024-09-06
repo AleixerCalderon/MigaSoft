@@ -113,6 +113,8 @@ body{
     display: flex;
     flex-direction: row;
     gap: 20px;
+    max-width: 350px;
+    margin: auto;
     img{
         width: 80px;
     }
