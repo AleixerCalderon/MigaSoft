@@ -7,7 +7,6 @@ header{
     height: 10vh;
 }
 header .brand{
-    width: 50vw;
     text-align: left;
 }
 header .brand:hover{
@@ -15,10 +14,27 @@ header .brand:hover{
     transition: opacity .4s;
 }
 header nav{
-    width: 50vw;
+    margin-left: auto;
     text-align: end;
 }
-
+header .menu-mobile{
+    display: none;
+}
+button.navbar-toggler.collapsed {
+    border: 2px solid #fff;
+}
+.navbar-toggler{
+    background: #ffffff;
+}
+.navbar-toggler:focus{
+    box-shadow: none;
+}
+.navbar-nav a{
+    text-decoration: none;
+    color: #676767;
+    padding: 15px 0px;
+    border-bottom: 1px solid #cecece;
+}
 ul{
     list-style: none;
     margin: 0;
