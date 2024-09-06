@@ -1,0 +1,27 @@
+.sidebar {
+    background-color: #f8f9fa; /* Cambia a tu color deseado */
+    padding: 20px;
+    height: 100vh; /* Asegura que el sidebar ocupe toda la altura */
+  }
+  
+  .contenedor-p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header-table {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .titulo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .titulo img {
+    margin-right: 10px;
+  }
+  

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Header from "../componets/Header";
-import Dashboard from "../componets/Dashboard";
 import Footer from "../componets/Footer";
 
 const HomePage = ()=>{
@@ -33,7 +32,6 @@ const HomePage = ()=>{
             <Header/>
             <h1>Este es el HomePage</h1>
             {usuario ? <pre>{JSON.stringify(usuario, null, 1)}</pre>: <p>Cargando...</p>}
-            <Dashboard/>
             <Footer/>
         </>
     );

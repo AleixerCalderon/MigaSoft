@@ -10,10 +10,15 @@ header .brand{
     width: 50vw;
     text-align: left;
 }
+header .brand:hover{
+    opacity: 0.4;
+    transition: opacity .4s;
+}
 header nav{
     width: 50vw;
     text-align: end;
 }
+
 ul{
     list-style: none;
     margin: 0;

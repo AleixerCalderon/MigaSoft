@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './dashboard.css';
-import logo from "../assets/logo-migasoft.png";
 import icon1 from "../assets/icon-inventario.svg";
 import icon2 from "../assets/icon-roles.svg";
 import icon3 from "../assets/icon-bodega.svg";
@@ -10,6 +9,8 @@ import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-ordenes.svg";
 import icon6 from "../assets/icon-user.svg";
 import icon7 from "../assets/icon-totalProductos.svg";
+import Header from './Header';
+import Footer from './Footer';
 
 const Dashboard = () => {
   const cards = [
@@ -23,39 +24,44 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="container mt-5 p-3">
-      <h1 className="text-dark mt-5 margin-60">Bienvenido</h1>
-      <div className="row text-center">
-        <div className="container">
-          <div className="row justify-content-around">
-            {cards.slice(0, 4).map((card, index) => (
-              <div key={index} className="col-md-2 mb-4">
-                <Link to={card.to} className="card text-decoration-none" style={{ height: '200px', width: '200px' }}>
-                  <div className="card-body d-flex flex-column align-items-center justify-content-center">
-                    <img src={card.icon} alt={card.title} />
-                    <h5 className="card-title text-light">{card.title}</h5>
-                    {card.extra}
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="row justify-content-around">
-            {cards.slice(4, 7).map((card, index) => (
-              <div key={index} className="col-md-3 mb-1">
-                <Link to={card.to} className="card text-decoration-none" style={{ height: '200px', width: '200px' }}>
-                  <div className="card-body d-flex flex-column align-items-center justify-content-center">
-                    <img src={card.icon} alt={card.title} />
-                    <h5 className="card-title text-light">{card.title}</h5>
-                    {card.extra}
-                  </div>
-                </Link>
-              </div>
-            ))}
+    <>
+      <Header />
+      <div className="container mt-5 p-3">
+        <h1 className="text-dark mt-5 margin-60">Bienvenido</h1>
+        <div className="row text-center">
+          <div className="container">
+            <div className="row justify-content-around">
+              {cards.slice(0, 4).map((card, index) => (
+                <div key={index} className="col-md-2 mb-4">
+                  <Link to={card.to} className="card text-decoration-none" style={{ height: '200px', width: '200px' }}>
+                    <div className="card-body d-flex flex-column align-items-center justify-content-center">
+                      <img src={card.icon} alt={card.title} />
+                      <h5 className="card-title text-light">{card.title}</h5>
+                      {card.extra}
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+            <div className="row justify-content-around">
+              {cards.slice(4, 7).map((card, index) => (
+                <div key={index} className="col-md-3 mb-1">
+                  <Link to={card.to} className="card text-decoration-none" style={{ height: '200px', width: '200px' }}>
+                    <div className="card-body d-flex flex-column align-items-center justify-content-center">
+                      <img src={card.icon} alt={card.title} />
+                      <h5 className="card-title text-light">{card.title}</h5>
+                      {card.extra}
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div>  
+
+      <Footer />
+    </>
   );
 };
 
