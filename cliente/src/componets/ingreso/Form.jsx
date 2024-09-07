@@ -5,8 +5,7 @@ import "./form.css";
 
 const Formulario = () => {
   return (
-    <>
-      <Form className='form-login'>
+      <Form className= "form-login">
         <div className="text-center mb-4 form-title"><h3>Formulario de Ingreso</h3></div>
         <Form.Group className="mb-4">
           <Form.Label>Correo electrónico</Form.Label>
@@ -29,7 +28,6 @@ const Formulario = () => {
         </div>
         <div className="text-center mt-4">¿Olvidaste tu contraseña?</div>
       </Form>
-    </>
   );
 };
 
