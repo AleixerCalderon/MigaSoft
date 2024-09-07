@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <Container fluid className="ingreso">
       <Row>
-        <Col lg={10} md={8} sm={10} xs={12}>
+        <Col lg={12} md={8} sm={10} xs={12}>
           <div className="logo">
             <img src={logo} alt="MigaSoft" />
           </div>

@@ -28,7 +28,7 @@ router.get('/:id', authMiddleware, productoController.getProducto);
 
 /**
 * @swagger
-* /producto/{nombre}:
+* /producto/nombre/{nombre}:
 *   get:
 *     summary: Obtener un producto por nombre
 *     description: Obtiene los detalles de un producto específico.
@@ -46,7 +46,7 @@ router.get('/:id', authMiddleware, productoController.getProducto);
 *       404:
 *         description: producto no encontrado.
 */
-router.get('/:nombre', authMiddleware, productoController.getProductoByNombre);
+router.get('/nombre/:nombre', authMiddleware, productoController.getProductoByNombre);
 
 /**
  * @swagger
