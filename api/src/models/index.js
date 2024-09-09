@@ -13,6 +13,8 @@ import TiposBodegaModel from "./TiposBodega.js";
 import InventariosBodegaModel from "./InventariosBodega.js";
 import LotesModel from "./Lotes.js";
 import ProductosModel from "./Productos.js";
+import TrasladosModel from "./Traslados.js";
+import DetalleTrasladosModel from "./DetalleTraslados.js";
 
 // instancia del modelo
 const User = usuarioModel(sequelize);
@@ -25,6 +27,8 @@ const Inventario = InventariosBodegaModel(sequelize);
 const Lotes = LotesModel(sequelize);
 const Productos = ProductosModel(sequelize);
 const tipoIdentificacion = tipoIdentificacionModel(sequelize);
+const Traslados = TrasladosModel(sequelize);
+const DetalleTraslados = DetalleTrasladosModel(sequelize);
 
 //Asociar
 User.associate({ Persona, Roles, RolesUsuario });
@@ -34,6 +38,8 @@ Bodegas.associate({ TiposBodega });
 TiposBodega.associate({ Bodegas });
 Inventario.associate({ Bodegas, Lotes });
 Lotes.associate({ Productos });
+Traslados.associate({ Bodegas });
+DetalleTraslados.associate({ Traslados, Lotes });
 
 
 sequelize.sync();
@@ -48,5 +54,7 @@ export {
     TiposBodega,
     Inventario,
     Lotes,
-    Productos
+    Productos,
+    Traslados,
+    DetalleTraslados
 };

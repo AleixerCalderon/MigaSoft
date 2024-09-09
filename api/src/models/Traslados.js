@@ -1,7 +1,7 @@
-import {Sequelize, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 
-const TrasladosModel = function(sequelize) {
-  return sequelize.define('Traslados', {
+const TrasladosModel = function (sequelize) {
+  const Traslado = sequelize.define('Traslados', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -26,21 +26,27 @@ const TrasladosModel = function(sequelize) {
     },
     fechaTraslado: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     },
     descripcion: {
       type: DataTypes.STRING(150),
       allowNull: false
     },
+    estado: {
+      type: DataTypes.STRING(150),
+      allowNull: false,
+      defaultValue: "Por Confirmar"
+    },
     createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     },
     updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     }
   }, {
     sequelize,
@@ -71,5 +77,16 @@ const TrasladosModel = function(sequelize) {
       },
     ]
   });
+  Traslado.associate = (models) => {
+    Traslado.belongsTo(models.Bodegas, {
+      foreignKey: 'idBodegaOrigen',
+      as: 'BodegaOrigen'
+    });
+    Traslado.belongsTo(models.Bodegas, {
+      foreignKey: 'idBodegaDestino',
+      as: 'BodegaDestino'
+    });
+  }
+  return Traslado;
 };
 export default TrasladosModel;

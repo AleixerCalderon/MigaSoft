@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const DetalleTrasladosModel = function(sequelize) {
-  return sequelize.define('DetalleTraslados', {
+  const DetalleTraslado = sequelize.define('DetalleTraslados', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -67,5 +67,16 @@ const DetalleTrasladosModel = function(sequelize) {
       },
     ]
   });
+  DetalleTraslado.associate = (models) => {
+    DetalleTraslado.belongsTo(models.Traslados, {
+      foreignKey: 'idTraslado',
+      as: 'Traslado'
+    });
+    DetalleTraslado.belongsTo(models.Lotes, {
+      foreignKey: 'idLote',
+      as: 'Lote'
+    });
+  }
+  return DetalleTraslado;
 };
 export default DetalleTrasladosModel;

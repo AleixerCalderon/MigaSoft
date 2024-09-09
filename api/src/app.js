@@ -10,6 +10,7 @@ import bodegaRoutes from './routes/bodegaRauters.js';
 import InventarioRoutes from './routes/inventarioRouters.js';
 import ProductoRouters from './routes/productoRouters.js';
 import LoteRouters from './routes/loteRoutes.js';
+import TrasladoRouter from './routes/trasladoRoutes.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/bodegas', bodegaRoutes);
 app.use('/Inventario', InventarioRoutes);
 app.use('/producto', ProductoRouters);
 app.use('/Lote', LoteRouters);
+app.use('/Traslado', TrasladoRouter);
 // //END ** ** rutas **
 
 sequelize.authenticate().then(() => {
