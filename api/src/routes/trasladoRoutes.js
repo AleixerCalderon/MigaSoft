@@ -31,10 +31,6 @@ const router = express.Router();
 *                  type: string
 *                  example: Traslado de productos
 *                  description: Descripción del traslado
-*                estado:
-*                  type: string
-*                  example: En proceso
-*                  description: Estado del traslado
 *                detalles:
 *                  type: array
 *                  items:
