@@ -2,7 +2,7 @@ import "./sidebar.css";
 import { Link } from "react-router-dom";
 import icon1 from "../assets/icon-inventario.svg";
 import icon2 from "../assets/icon-roles.svg";
-import icon3 from "../assets/icon-bodega.svg";
+import icon3 from "../assets/icon-inventario.svg";
 import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-volver.svg";
 

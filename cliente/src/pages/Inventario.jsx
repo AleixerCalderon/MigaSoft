@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./responsive.css";
 import Icon from "../assets/icon-inventarios.svg";
+import IconAdd from "../assets/icon-agregar.svg";
 
 
 const columns = [
@@ -218,6 +219,9 @@ const Inventario = () => {
               <div className="header-table">
                   <div className="titulo">
                     <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
+                  </div>
+                  <div className="titulo add-item">
+                  <h4>Crear productos</h4> <img src={IconAdd} alt="Icon Inventario" />
                   </div>
               </div>
               <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>

@@ -3,10 +3,19 @@
     .sidebar{
         
     }
+    .menu-mobile{
+        
+    }
 }
 
 @media (max-width:576px) {
     .sidebar{
         display: none;
+    }
+    .link-list{
+        display: none;
+    }
+    .menu-mobile{
+        display: block!important;
     }
 }

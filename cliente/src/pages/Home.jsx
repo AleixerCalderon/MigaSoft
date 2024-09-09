@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Header from "../componets/Header";
+import burgerImg1 from "../assets/burger.png";
+import burgerImg2 from "../assets/burger1.png";
+import burgerImg3 from "../assets/burger2.png";
 import Footer from "../componets/Footer";
 
 const HomePage = ()=>{
@@ -29,10 +32,35 @@ const HomePage = ()=>{
     },[]);
     return(
         <>
-            <Header/>
-            <h1>Este es el HomePage</h1>
-            {usuario ? <pre>{JSON.stringify(usuario, null, 1)}</pre>: <p>Cargando...</p>}
-            <Footer/>
+        <Header />
+        {usuario ? <pre>{JSON.stringify(usuario, null, 1)}</pre> : <p>Cargando...</p>}
+        <h2>Bienvenido a Pan Diario </h2>
+        <h1>Una Franquisia Bimbo</h1>
+        
+        <div className="main-container justify-content-center">
+            <p>
+            Servicio al cliente y cultura empresarial inigualables,
+            ambiente de trabajo excepcional para personas talentosas
+            </p>
+          <div className="content">
+            <p>
+              Aquí puedes encontrar información relevante sobre nuestros servicios y productos. 
+              Nos esforzamos por ofrecer la mejor calidad y atención a nuestros clientes.
+            </p>
+          </div>
+          <div className="image-container">
+            <div className="img">
+            <img className="panburger" src={burgerImg1} alt="pan hamburguer" />
+            </div>
+            <div className="img">
+            <img className="panburger" src={burgerImg2} alt="pan hamburguer" />
+            </div>
+            <div className="img">
+            <img className="panburger" src={burgerImg3} alt="pan hamburguer" />
+            </div>
+          </div>
+        </div>
+        <Footer/>
         </>
     );
 }
