@@ -139,52 +139,42 @@ const customStyles = {
 
 const Reportes = () => {
   return (
+
     <>
-      <Header />
-      <Container fluid className="contenedor-p">
+    <Header />
 
-        <Row className="content-p">
+    <Container fluid className="contenedor-p">
 
-          <Col lg={2} md={3} sm={3} xs={12} className="sidebar">
-            <Sidebar />
-          </Col>
+      <Row className="content-p">
 
-          <Col lg={10} md={9} sm={9} xs={12} className="container">
+        <Col lg={2} md={4} sm={12} xs={12} className="sidebar">
+          <Sidebar />
+        </Col>
 
-            <div className="contenido-tablas position-relative">
-
-              <div className="header-table col position-absolute top-0 start-0">
-
+        <Col lg={10} md={8} sm={12} xs={12}>
+          <div className="contenido-tablas">
+            <div className="header-table">
                 <div className="titulo">
-                  <img src={Icon} alt="Icon Reportes" />
+                  <div className="icon-content">
+                    <img src={Icon} alt="Icon Reportes" />
+                  </div>
+                    <div className="text-title">
+                      <h2>Reportes</h2>
+                      <p>Móvil WBH123</p>
+                    </div>
+                  
                 </div>
-
-                <div className="subtitulo">
-                  <h2>Reportes</h2>
-                  <p>Movil WYH356</p>
-                </div>
-
-              </div>
-
             </div>
+            <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
+          </div>
+        </Col>
 
-            <div className="">
+      </Row>
 
-              <div className="">
-              
-                <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
-
-              </div>
-
-            </div>
-
-          </Col>
-
-        </Row>
-
-      </Container>
-      <Footer />
-    </>
+    </Container>
+    
+    <Footer />
+  </>
   );
 };
 
