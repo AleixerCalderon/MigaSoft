@@ -66,12 +66,16 @@ body{
     align-items: end;
     h4{
         font-size: 18px;
-        margin-right: 20px;
+        margin-right: 10px;
         color: #4F4F4F;
     }
     img{
         width: 30px!important;
     }
+}
+.add-item:hover{
+    opacity: 0.4;
+    transition: 0.5s;
 }
 
 .dashboard{
@@ -177,7 +181,12 @@ body{
 .hDPlLz{
     justify-content: center!important;
 }
-
+.modal-dialog{
+    max-width: 800px;
+    .modal-body{
+        padding: 40px;
+    }
+}
 @media (max-width:576px) {
     .dashboard{
         .dash-menu{

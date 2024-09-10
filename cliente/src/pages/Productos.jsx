@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import DataTable from "react-data-table-component"; //Libreria Datatables
 import Header from "../componets/Header";
 import Sidebar from "../componets/Sidebar";
@@ -5,6 +8,8 @@ import Footer from "../componets/Footer";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import "./responsive.css";
 import IconPro from "../assets/icon-productos.svg";
 import IconAdd from "../assets/icon-agregar.svg";
@@ -31,23 +36,28 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Categoría",
-    selector: (row) => row.categoria,
+    name: "Volumen",
+    selector: (row) => row.volumen,
     sortable: true,
   },
   {
-    name: "Diámetro In.",
-    selector: (row) => row.diametro,
+    name: "Descripción",
+    selector: (row) => row.descripcion,
     sortable: true,
   },
   {
-    name: "Cantidad",
-    selector: (row) => row.cantidad,
+    name: "Precio Unitario",
+    selector: (row) => row.preciouni,
+    sortable: true,
+  },
+  {
+    name: "Precio Venta",
+    selector: (row) => row.precioventa,
     sortable: true,
   },
   {
     name: "Estado",
-    selector: (row) => row.estado,
+    selector: (row) => row.editar,
     sortable: true,
   },
 ];
@@ -58,110 +68,110 @@ const data = [
     codigo: "B22726",
     nombre: "Pan Perro Cluster",
     peso: "830",
-    categoria: "Ajonjolí",
-    diametro: "no aplica",
-    cantidad: "100",
-    estado: "habilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "no aplica",
+    preciouni: "100",
+    precioventa: "habilitado",
+    editar: "editar",
   },
   {
     id: 2,
     codigo: "B9685",
     nombre: "Pan Hamburguesa",
     peso: "850",
-    categoria: "Ajonjolí",
-    diametro: "5",
-    cantidad: "2000",
-    estado: "habilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "5",
+    preciouni: "2000",
+    precioventa: "habilitado",
+    editar: "editar",
   },
   {
     id: 3,
     codigo: "B9466",
     nombre: "Pan Hamburguesa",
     peso: "850",
-    categoria: "Artesanal",
-    diametro: "5",
-    cantidad: "800",
-    estado: "habilitado",
-    editar: "",
+    volumen: "Artesanal",
+    descripcion: "5",
+    preciouni: "800",
+    precioventa: "habilitado",
+    editar: "editar",
   },
   {
     id: 4,
     codigo: "B501238",
     nombre: "Pan Hamburguesa Guadalupe",
     peso: "625",
-    categoria: "Ajonjolí",
-    diametro: "5",
-    cantidad: "3000",
-    estado: "habilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "5",
+    preciouni: "3000",
+    precioventa: "habilitado",
+    editar: "editar",
   },
   {
     id: 5,
     codigo: "B505354",
     nombre: "Pan Tajado",
     peso: "730",
-    categoria: "Tradicional",
-    diametro: "no aplica",
-    cantidad: "80",
-    estado: "habilitado",
-    editar: "",
+    volumen: "Tradicional",
+    descripcion: "no aplica",
+    preciouni: "80",
+    precioventa: "habilitado",
+    editar: "editar",
   },
   {
     id: 6,
     codigo: "B9673",
     nombre: "Pan Hamburguesa Brioche",
     peso: "850",
-    categoria: "Brillo",
-    diametro: "5",
-    cantidad: "No Aplica",
-    estado: "inhabilitado",
-    editar: "",
+    volumen: "Brillo",
+    descripcion: "5",
+    preciouni: "No Aplica",
+    precioventa: "inhabilitado",
+    editar: "editar",
   },
   {
     id: 7,
     codigo: "B22726",
     nombre: "Pan Perro Cluster",
     peso: "830",
-    categoria: "Ajonjolí",
-    diametro: "no aplica",
-    cantidad: "100",
-    estado: "inhabilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "no aplica",
+    preciouni: "100",
+    precioventa: "inhabilitado",
+    editar: "editar",
   },
   {
     id: 8,
     codigo: "B22726",
     nombre: "Pan Perro Cluster",
     peso: "830",
-    categoria: "Ajonjolí",
-    diametro: "no aplica",
-    cantidad: "100",
-    estado: "inhabilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "no aplica",
+    preciouni: "100",
+    precioventa: "inhabilitado",
+    editar: "editar",
   },
   {
     id: 9,
     codigo: "B22726",
     nombre: "Pan Perro Cluster",
     peso: "830",
-    categoria: "Ajonjolí",
-    diametro: "no aplica",
-    cantidad: "100",
-    estado: "inhabilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "no aplica",
+    preciouni: "100",
+    precioventa: "inhabilitado",
+    editar: "editar",
   },
   {
     id: 10,
     codigo: "B22726",
     nombre: "Pan Perro Cluster",
     peso: "830",
-    categoria: "Ajonjolí",
-    diametro: "no aplica",
-    cantidad: "100",
-    estado: "inhabilitado",
-    editar: "",
+    volumen: "Ajonjolí",
+    descripcion: "no aplica",
+    preciouni: "100",
+    precioventa: "inhabilitado",
+    editar: "editar",
   },
 ];
 const paginationComponentOptions = {
@@ -180,7 +190,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "1.3em",
+      fontSize: "1.1em",
       fontWeight: "bold",
       backgroundColor: "#4F4F4F",
       color: "#ffffff",
@@ -198,6 +208,21 @@ const customStyles = {
 };
 
 const Productos = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   return (
     <>
       <Header />
@@ -214,8 +239,8 @@ const Productos = () => {
                 <div className="titulo">
                   <img src={IconPro} alt="Icon Productos" /> <h2>Productos</h2>
                 </div>
-                <div className="titulo add-item">
-                  <h4>Crear productos</h4>{" "}
+                <div className="titulo add-item" onClick={handleShow}>
+                  <h4>Crear productos</h4>
                   <img src={IconAdd} alt="Icon agregar productos" />
                 </div>
               </div>
@@ -228,6 +253,72 @@ const Productos = () => {
                 paginationComponentOptions={paginationComponentOptions}
                 customStyles={customStyles}
               />
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Crear Producto</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form
+                    noValidate
+                    validated={validated}
+                    onSubmit={handleSubmit}
+                  >
+                    <Row className="mb-2 mt-4">
+                      <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
+                        <Form.Label>Código de producto</Form.Label>
+                        <Form.Control required type="number" placeholder="Ingresa el código del producto" defaultValue="Mark"/>
+                        <Form.Control.Feedback>
+                          Looks good!
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group as={Col} md="6" controlId="validationCustom02" >
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control required type="text" placeholder="Ingresa el nombre" defaultValue="Otto"/>
+                        <Form.Control.Feedback>
+                          Looks good!
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-2 mt-4">
+                        <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
+                            <Form.Label>Peso</Form.Label>
+                            <Form.Control required type="number" placeholder="Ingresa el peso del producto" defaultValue="Mark"/>
+                            <Form.Control.Feedback>
+                            Looks good!
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationCustom01">
+                            <Form.Label>Volumen</Form.Label>
+                            <Form.Control required type="number" placeholder="Ingresa el volumen" defaultValue="Mark"/>
+                            <Form.Control.Feedback>
+                            Looks good!
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Row>
+                    <Row className="mb-2 mt-4">
+                        <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
+                            <Form.Label>Precio unitario</Form.Label>
+                            <Form.Control required type="number" placeholder="Ingresa el precio x unidad" defaultValue="preciouni"/>
+                            <Form.Control.Feedback>
+                            Looks good!
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationCustom01">
+                            <Form.Label>Precio Venta</Form.Label>
+                            <Form.Control required type="number" placeholder="Ingresa el precio final" defaultValue="precioventa"/>
+                            <Form.Control.Feedback>
+                            Looks good!
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Row>
+                    <Form.Group className="mb-6 mt-4 ps-3">
+                        <Button type="submit">Guardar</Button>
+                    </Form.Group>
+                    
+                  </Form>
+                </Modal.Body>
+              </Modal>
             </div>
           </Col>
         </Row>
