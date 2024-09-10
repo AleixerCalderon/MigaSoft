@@ -9,8 +9,6 @@ import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-ordenes.svg";
 import icon6 from "../assets/icon-user.svg";
 import icon7 from "../assets/icon-totalProductos.svg";
-import Header from './Header';
-import Footer from './Footer';
 
 const Dashboard = () => {
   const cards = [
@@ -25,9 +23,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header />
       <div className="container mt-5 p-3">
-        <h1 className="text-dark mt-5 margin-60">Bienvenido</h1>
         <div className="row text-center">
           <div className="container">
             <div className="row justify-content-around">
@@ -59,8 +55,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>  
-
-      <Footer />
     </>
   );
 };

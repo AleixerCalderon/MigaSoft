@@ -1,26 +1,27 @@
-.main-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-    height: 100vh;
-}
-
-.content {
-    flex: 1;
-    padding: 20px;
-}
-
-.image-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bg-image {
+    background-image: url('../assets/burger.png');
+    background-size: cover; /* O 'contain' según lo que necesites */
+    background-position: center;
+    min-height: 100vh; /* Cambiado a min-height */
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    margin: 0 10px; /* Agregado margen entre imágenes */
+}
+
+h1,h2 {
+    font-size: 3rem;
+    color: black;
+}
+
+p{
+    font-size: 1.2rem;
+    color: black;
+}
+
+li {
+    font-size: 1.2rem;
 }
