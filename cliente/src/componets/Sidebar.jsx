@@ -5,6 +5,7 @@ import icon2 from "../assets/icon-roles.svg";
 import icon3 from "../assets/icon-inventario.svg";
 import icon4 from "../assets/icon-analitca.svg";
 import icon5 from "../assets/icon-volver.svg";
+import icon6 from "../assets/icon-traslados.svg";
 
 const Sidebar = () => {
   return (
@@ -35,6 +36,11 @@ const Sidebar = () => {
           <li>
             <Link className="link" to="/reportes">
             <img src={icon4} alt="Inventario"/>Reportes
+            </Link>
+          </li>
+          <li>
+            <Link className="link" to="/traslados">
+            <img src={icon6} alt="Inventario"/>Traslados
             </Link>
           </li>
         </ul>

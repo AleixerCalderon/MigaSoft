@@ -11,6 +11,7 @@ import Bodega from './pages/Bodega';
 import Reportes from './pages/Reportes';
 import Login from './componets/ingreso/Login';
 import Dashboard from './componets/Dashboard.jsx';
+import Traslados from './pages/Traslados.jsx';
 
 
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/bodega" element={<Bodega/>}/>
         <Route path="/reportes" element={<Reportes/>}/>
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/traslados" element={<Traslados/>} />
       </Routes>
     </div>
   );
