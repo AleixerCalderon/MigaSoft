@@ -63,7 +63,7 @@ body{
 }
 .add-item{
     margin-left: auto;
-    align-items: center !important;
+    align-items: end;
     h4{
         font-size: 18px;
         margin-right: 20px;

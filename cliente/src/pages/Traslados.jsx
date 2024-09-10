@@ -215,7 +215,7 @@ const Traslados = () => {
                   <img src={IconTras} alt="Icon Traslados" /> <h2>Traslados</h2>
                 </div>
                 <div className="titulo add-item">
-                  <h4>Crear productos</h4>{" "}
+                  <h4>Crear traslado</h4>{" "}
                   <img src={IconAdd} alt="Icon Inventario" />
                 </div>
               </div>

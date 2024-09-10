@@ -9,53 +9,50 @@ import "./responsive.css";
 import Icon from "../assets/icon-inventarios.svg";
 import IconAdd from "../assets/icon-agregar.svg";
 
-
 const columns = [
-	{
-		name: 'Id',
-		selector: row => row.id,
-    sortable: true,
-	},
   {
-		name: 'Código',
-		selector: row => row.codigo,
+    name: "Id",
+    selector: (row) => row.id,
     sortable: true,
-	},
+  },
   {
-		name: 'Nombre',
-		selector: row => row.nombre,
+    name: "Código",
+    selector: (row) => row.codigo,
     sortable: true,
-	},
-	{
-		name: 'Peso Gr.',
-		selector: row => row.peso,
-    sortable: true,
-	},
+  },
   {
-		name: 'Categoría',
-		selector: row => row.categoria,
+    name: "Nombre",
+    selector: (row) => row.nombre,
     sortable: true,
-	},
+  },
   {
-		name: 'Diámetro In.',
-		selector: row => row.diametro,
+    name: "Peso Gr.",
+    selector: (row) => row.peso,
     sortable: true,
-	},
+  },
   {
-		name: 'Cantidad',
-		selector: row => row.cantidad,
+    name: "Categoría",
+    selector: (row) => row.categoria,
     sortable: true,
-	},
+  },
   {
-		name: 'Estado',
-		selector: row => row.estado,
+    name: "Diámetro In.",
+    selector: (row) => row.diametro,
     sortable: true,
-	},
-  
+  },
+  {
+    name: "Cantidad",
+    selector: (row) => row.cantidad,
+    sortable: true,
+  },
+  {
+    name: "Estado",
+    selector: (row) => row.estado,
+    sortable: true,
+  },
 ];
 
 const data = [
-
   {
     id: 1,
     codigo: "B22726",
@@ -65,7 +62,7 @@ const data = [
     diametro: "no aplica",
     cantidad: "100",
     estado: "habilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 2,
@@ -76,9 +73,9 @@ const data = [
     diametro: "5",
     cantidad: "2000",
     estado: "habilitado",
-    editar: ""
+    editar: "",
   },
-	{
+  {
     id: 3,
     codigo: "B9466",
     nombre: "Pan Hamburguesa",
@@ -87,7 +84,7 @@ const data = [
     diametro: "5",
     cantidad: "800",
     estado: "habilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 4,
@@ -98,7 +95,7 @@ const data = [
     diametro: "5",
     cantidad: "3000",
     estado: "habilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 5,
@@ -109,7 +106,7 @@ const data = [
     diametro: "no aplica",
     cantidad: "80",
     estado: "habilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 6,
@@ -120,7 +117,7 @@ const data = [
     diametro: "5",
     cantidad: "No Aplica",
     estado: "inhabilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 7,
@@ -131,7 +128,7 @@ const data = [
     diametro: "no aplica",
     cantidad: "100",
     estado: "inhabilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 8,
@@ -142,7 +139,7 @@ const data = [
     diametro: "no aplica",
     cantidad: "100",
     estado: "inhabilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 9,
@@ -153,7 +150,7 @@ const data = [
     diametro: "no aplica",
     cantidad: "100",
     estado: "inhabilitado",
-    editar: ""
+    editar: "",
   },
   {
     id: 10,
@@ -164,41 +161,40 @@ const data = [
     diametro: "no aplica",
     cantidad: "100",
     estado: "inhabilitado",
-    editar: ""
+    editar: "",
   },
-
-]
+];
 const paginationComponentOptions = {
-	rowsPerPageText: 'Filas por página',
-	rangeSeparatorText: 'de',
-	selectAllRowsItem: true,
-	selectAllRowsItemText: 'Todos',
+  rowsPerPageText: "Filas por página",
+  rangeSeparatorText: "de",
+  selectAllRowsItem: true,
+  selectAllRowsItemText: "Todos",
 };
 
 const customStyles = {
-	rows: {
-		style: {
-			minHeight: '60px',
-      fontSize:"1em" // override the row height
-		},
-	},
-	headCells: {
-		style: {
-			fontSize: '1.3em',
-      fontWeight: 'bold',
-      backgroundColor: '#4F4F4F',
-      color:'#ffffff',
-		},
-	},
-	cells: {
-		style: {
-			paddingLeft: '8px', // override the cell padding for data cells
-			paddingRight: '8px',
-      borderStyle:"solid",
-      borderColor:"#E5E5E5",
-      borderWidth:"1px",
-		},
-	},
+  rows: {
+    style: {
+      minHeight: "60px",
+      fontSize: "1em", // override the row height
+    },
+  },
+  headCells: {
+    style: {
+      fontSize: "1.3em",
+      fontWeight: "bold",
+      backgroundColor: "#4F4F4F",
+      color: "#ffffff",
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for data cells
+      paddingRight: "8px",
+      borderStyle: "solid",
+      borderColor: "#E5E5E5",
+      borderWidth: "1px",
+    },
+  },
 };
 
 const Inventario = () => {
@@ -207,9 +203,7 @@ const Inventario = () => {
       <Header />
 
       <Container fluid className="contenedor-p">
-
         <Row className="content-p">
-
           <Col lg={2} md={4} sm={12} xs={12} className="sidebar">
             <Sidebar />
           </Col>
@@ -217,21 +211,24 @@ const Inventario = () => {
           <Col lg={10} md={8} sm={12} xs={12}>
             <div className="contenido-tablas">
               <div className="header-table">
-                  <div className="titulo">
-                    <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
-                  </div>
-                  <div className="titulo add-item">
-                  <h4>Crear productos</h4> <img src={IconAdd} alt="Icon Inventario" />
-                  </div>
+                <div className="titulo">
+                  <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
+                </div>
               </div>
-              <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
+              <DataTable
+                columns={columns}
+                data={data}
+                showGridlines
+                selectableRows
+                pagination
+                paginationComponentOptions={paginationComponentOptions}
+                customStyles={customStyles}
+              />
             </div>
           </Col>
-
         </Row>
-
       </Container>
-      
+
       <Footer />
     </>
   );
