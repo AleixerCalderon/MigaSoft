@@ -6,7 +6,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles.css";
-import Icon from "../assets/buildings.svg";
+import Icon from "../assets/icon-bodega-v2.svg";
+import IconAdd from "../assets/icon-agregar.svg";
 
 const columns = [
 	{
@@ -141,9 +142,13 @@ const Bodega = () => {
           <Col lg={10} md={9} sm={9} xs={12}>
             <div className="contenido-tablas">
               <div className="header-table">
-                  <div className="titulo">
-                    <img src={Icon} alt="Icon Bodega" /> <h2>Bodega</h2>
-                  </div>
+              <div className="titulo">
+                  <img src={Icon} alt="Icon Productos" /> <h2>Bodegas</h2>
+                </div>
+                <div className="titulo add-item">
+                  <h4>Crear bodega</h4>{" "}
+                  <img src={IconAdd} alt="Icon agregar productos" />
+                </div>
               </div>
               <DataTable columns={columns} data={data} showGridlines selectableRows  pagination paginationComponentOptions={paginationComponentOptions} customStyles={customStyles}/>
             </div>

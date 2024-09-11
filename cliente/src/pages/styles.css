@@ -63,15 +63,19 @@ body{
 }
 .add-item{
     margin-left: auto;
-    align-items: center !important;
+    align-items: end;
     h4{
         font-size: 18px;
-        margin-right: 20px;
+        margin-right: 10px;
         color: #4F4F4F;
     }
     img{
         width: 30px!important;
     }
+}
+.add-item:hover{
+    opacity: 0.4;
+    transition: 0.5s;
 }
 
 .dashboard{
@@ -148,17 +152,23 @@ body{
     margin: 50px auto;
     
 }
-.header-table{
+
+.header-table {
     display: flex;
     flex-direction: row;
     align-content: start;
     gap: 20px;
-}
-.header-table .titulo{
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    margin-bottom: 20px;
+    .titulo{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+    }
+    .text-title{
+        p{
+            margin-bottom: 0!important;
+            text-align: left;
+        }
+    }
 }
 .header-table .titulo img{
     width: 50px;
@@ -166,11 +176,17 @@ body{
 .header-table h2{
     color: #5B5B5B;
     font-weight: 600;
+    margin-bottom: 0;
 }
 .hDPlLz{
     justify-content: center!important;
 }
-
+.modal-dialog{
+    max-width: 800px;
+    .modal-body{
+        padding: 40px;
+    }
+}
 @media (max-width:576px) {
     .dashboard{
         .dash-menu{

@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./responsive.css";
-import Icon from "../assets/icon-inventarios.svg";
+import IconTras from "../assets/icon-traslados.svg";
 import IconAdd from "../assets/icon-agregar.svg";
 
 const columns = [
@@ -197,7 +197,7 @@ const customStyles = {
   },
 };
 
-const Inventario = () => {
+const Traslados = () => {
   return (
     <>
       <Header />
@@ -212,7 +212,11 @@ const Inventario = () => {
             <div className="contenido-tablas">
               <div className="header-table">
                 <div className="titulo">
-                  <img src={Icon} alt="Icon Inventario" /> <h2>Inventario</h2>
+                  <img src={IconTras} alt="Icon Traslados" /> <h2>Traslados</h2>
+                </div>
+                <div className="titulo add-item">
+                  <h4>Crear traslado</h4>{" "}
+                  <img src={IconAdd} alt="Icon Inventario" />
                 </div>
               </div>
               <DataTable
@@ -234,4 +238,4 @@ const Inventario = () => {
   );
 };
 
-export default Inventario;
+export default Traslados;

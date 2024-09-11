@@ -11,6 +11,9 @@ import Bodega from './pages/Bodega';
 import Reportes from './pages/Reportes';
 import Login from './componets/ingreso/Login';
 import Dashboard from './componets/Dashboard.jsx';
+import Traslados from './pages/Traslados.jsx';
+import Productos from './pages/Productos.jsx';
+import Lotes from './pages/Lotes.jsx';
 
 
 
@@ -45,8 +48,11 @@ function App() {
         <Route path="/inventario" element={<Inventario/>}/>
         <Route path="/usuarios" element={<Usuarios/>}/>
         <Route path="/bodega" element={<Bodega/>}/>
+        <Route path="/lotes" element={<Lotes/>}/>
         <Route path="/reportes" element={<Reportes/>}/>
+        <Route path="/productos" element={<Productos/>}/>
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/traslados" element={<Traslados/>} />
       </Routes>
     </div>
   );
