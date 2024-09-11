@@ -3,6 +3,10 @@ import {Op}  from "sequelize";
 
 
 class ProductoRepository {
+  async getProductos() {
+    return await Productos.findAll();
+  }
+
   async addProducto(data) {
     return await Productos.create(data);
   }

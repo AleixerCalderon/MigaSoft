@@ -1,6 +1,10 @@
 import ProductoRepository from '../repositories/ProductoRepository.js';
 
 class ProductoService {
+    async getProductos() {
+        return await ProductoRepository.getProductos();
+    }
+
     async getProductoById(id) {
         return await ProductoRepository.getProductoById(id);
     }

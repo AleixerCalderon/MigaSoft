@@ -1,6 +1,15 @@
 import productoService from '../services/productoService.js';
 
 class ProductoController {
+    async getProductos(req, res) {
+        try {
+            const productos = await productoService.getProductos();
+            res.json(productos);
+        } catch (error) {
+            res.status(404).json({ error: 'Productos no encontrados Error: ' + error });
+        }
+    }
+
     async getProducto(req, res) {
         try {
             const producto = await productoService.getProductoById(req.params.id);

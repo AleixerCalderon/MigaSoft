@@ -6,6 +6,23 @@ const router = express.Router();
 
 /**
 * @swagger
+* /productos:
+*   get:
+*     summary: Obtener lista de productos
+*     description: Obtiene todos los productos.
+*     tags:
+*       - Productos
+*     responses:
+*       200:
+*         description: Detalles de todos los productos.
+*       404:
+*         description: producto no encontrado.
+*/
+router.get('/', authMiddleware, productoController.getProductos);
+
+
+/**
+* @swagger
 * /producto/{id}:
 *   get:
 *     summary: Obtener un producto por ID
