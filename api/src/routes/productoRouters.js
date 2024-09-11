@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
 * @swagger
-* /productos:
+* /producto/darProductos:
 *   get:
 *     summary: Obtener lista de productos
 *     description: Obtiene todos los productos.
@@ -18,7 +18,7 @@ const router = express.Router();
 *       404:
 *         description: producto no encontrado.
 */
-router.get('/', authMiddleware, productoController.getProductos);
+router.get('/darProductos', authMiddleware, productoController.getProductos);
 
 
 /**
