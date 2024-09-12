@@ -14,43 +14,6 @@ import IconPro from "../assets/icon-productos.svg";
 import IconAdd from "../assets/icon-agregar.svg";
 import Api from "../AxiosConfig";
 
-const columns = [
-  {
-    name: "Id",
-    selector: (row) => row.id,
-    sortable: true,
-  },
-  {
-    name: "Nombre",
-    selector: (row) => row.nombre,
-    sortable: true,
-  },
-  {
-    name: "Peso Gr.",
-    selector: (row) => row.peso,
-    sortable: true,
-  },
-  {
-    name: "Volumen",
-    selector: (row) => row.volumen,
-    sortable: true,
-  },
-  {
-    name: "Descripción",
-    selector: (row) => row.descripcion,
-    sortable: true,
-  },
-  {
-    name: "Precio Unitario",
-    selector: (row) => row.PrecioUnitario,
-    sortable: true,
-  },
-  {
-    name: "Precio Venta",
-    selector: (row) => row.PrecioVenta,
-    sortable: true,
-  }
-];
 
 const paginationComponentOptions = {
   rowsPerPageText: "Filas por página",
@@ -86,10 +49,80 @@ const customStyles = {
 };
 
 const Productos = () => {
+  const [producto, setProducto] = useState([]);
+  const [edit, setEdit]= useState([]);
+  const [productId, setProductId]= useState([]);
+
+  const handleEdit = (producto)=>{
+    setProducto({
+        nombre: producto.nombre,
+        descripcion: producto.descripcion,
+        peso: producto.descripcion,
+        volumen: producto.volumen,
+        PrecioUnitario: producto.PrecioUnitario,
+        PrecioVenta: producto.PrecioVenta,
+    });
+    setProductId(producto.id);
+    handleShow();
+    setEdit(true);
+  }
+  
+  const columns = [
+    {
+      name: "Id",
+      selector: (row) => row.id,
+      sortable: true,
+    },
+    {
+      name: "Nombre",
+      selector: (row) => row.nombre,
+      sortable: true,
+    },
+    {
+      name: "Peso Gr.",
+      selector: (row) => row.peso,
+      sortable: true,
+    },
+    {
+      name: "Volumen",
+      selector: (row) => row.volumen,
+      sortable: true,
+    },
+    {
+      name: "Descripción",
+      selector: (row) => row.descripcion,
+      sortable: true,
+    },
+    {
+      name: "Precio Unitario",
+      selector: (row) => row.PrecioUnitario,
+      sortable: true,
+    },
+    {
+      name: "Precio Venta",
+      selector: (row) => row.PrecioVenta,
+      sortable: true,
+    },
+    {
+      name:"Editar",
+      cell: (row)=>(
+        <button className="btn btn-primary" onClick={()=>handleEdit(row)}>Editar</button>
+      ),
+      button:true,
+    }
+  ];
   useEffect(()=>{
     darProductos();
+    setEdit(false);
     },[]);
   const [productos,setProductos] = useState([]);
+  
+  const handleChange = (e)=>{
+    setProducto({
+      ...producto,
+      [e.target.name]: e.target.value
+    });
+  };
   const darProductos= async()=>{
     try {
       const response = await Api.get('/producto/darProductos');
@@ -98,26 +131,48 @@ const Productos = () => {
       console.error(error);
     }
   }
-
+ 
   const handleSubmit= async (e)=>{
     e.preventDefault();
-    agregarProducto();
+    if (edit) {
+      editarProducto();
+    }else{
+      agregarProducto();
+    }
   }
 
   const agregarProducto= async()=>{
     try {
-      const response = await Api.post('/producto/agregar', {
-        
-          "nombre": "string",
-          "descripcion": "string",
-          "peso": 0,
-          "volumen": 0,
-          "PrecioUnitario": 0,
-          "PrecioVenta": 0
-        
-      });
+      const response = await Api.post('/producto/agregar', producto);
       darProductos();
-      // setProductos(response.data);
+      setProducto({
+        nombre: "",
+        descripcion:"",
+        peso:"",
+        volumen:"",
+        PrecioUnitario:"",
+        PrecioVenta:"",
+      });
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const editarProducto= async()=>{
+    try {
+      const response = await Api.put('/producto/' + productId , producto);
+      darProductos();
+      setProducto({
+        nombre: "",
+        descripcion:"",
+        peso:"",
+        volumen:"",
+        PrecioUnitario:"",
+        PrecioVenta:"",
+      });
+      handleClose();
+      setProductId(null);
     } catch (error) {
       console.error(error);
     }
@@ -129,15 +184,6 @@ const Productos = () => {
   const handleShow = () => setShow(true);
   const [validated, setValidated] = useState(false);
 
-  // const handleSubmit = (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-
-  //   setValidated(true);
-  // };
   return (
     <>
       <Header />
@@ -174,7 +220,7 @@ const Productos = () => {
                   <Modal.Title>Crear Producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <Form
+                  {/* <Form
                     noValidate
                     validated={validated}
                     onSubmit={handleSubmit}
@@ -231,6 +277,35 @@ const Productos = () => {
                         <Button type="submit">Guardar</Button>
                     </Form.Group>
                     
+                  </Form> */}
+                  <Form onSubmit={handleSubmit}>
+                    <div>
+                      <label htmlFor="" className="form-label">Nombre</label>
+                      <input className="form-control" type="text" name="nombre" value={producto.nombre} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <label htmlFor="" className="form-label">Descripcion</label>
+                      <input className="form-control" type="text" name="descripcion" value={producto.descripcion} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <label htmlFor="" className="form-label">Peso</label>
+                      <input className="form-control" type="text" name="peso" value={producto.peso} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <label htmlFor="" className="form-label">Volumen</label>
+                      <input className="form-control" type="text" name="volumen" value={producto.volumen} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <label htmlFor="" className="form-label">Precio Unitario</label>
+                      <input className="form-control" type="text" name="PrecioUnitario" value={producto.PrecioUnitario} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <label htmlFor="" className="form-label">Precio Venta</label>
+                      <input className="form-control" type="text" name="PrecioVenta" value={producto.PrecioVenta} onChange={handleChange} required/>
+                    </div>
+                    <div>
+                      <button type="submit" className="btn btn-success">Guardar</button>
+                    </div>
                   </Form>
                 </Modal.Body>
               </Modal>
