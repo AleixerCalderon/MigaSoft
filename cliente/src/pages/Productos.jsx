@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DataTable from "react-data-table-component"; //Libreria Datatables
@@ -9,20 +9,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import "./responsive.css";
 import IconPro from "../assets/icon-productos.svg";
 import IconAdd from "../assets/icon-agregar.svg";
+import Api from "../AxiosConfig";
 
 const columns = [
   {
     name: "Id",
     selector: (row) => row.id,
-    sortable: true,
-  },
-  {
-    name: "Código",
-    selector: (row) => row.codigo,
     sortable: true,
   },
   {
@@ -47,133 +42,16 @@ const columns = [
   },
   {
     name: "Precio Unitario",
-    selector: (row) => row.preciouni,
+    selector: (row) => row.PrecioUnitario,
     sortable: true,
   },
   {
     name: "Precio Venta",
-    selector: (row) => row.precioventa,
+    selector: (row) => row.PrecioVenta,
     sortable: true,
-  },
-  {
-    name: "Estado",
-    selector: (row) => row.editar,
-    sortable: true,
-  },
+  }
 ];
 
-const data = [
-  {
-    id: 1,
-    codigo: "B22726",
-    nombre: "Pan Perro Cluster",
-    peso: "830",
-    volumen: "Ajonjolí",
-    descripcion: "no aplica",
-    preciouni: "100",
-    precioventa: "habilitado",
-    editar: "editar",
-  },
-  {
-    id: 2,
-    codigo: "B9685",
-    nombre: "Pan Hamburguesa",
-    peso: "850",
-    volumen: "Ajonjolí",
-    descripcion: "5",
-    preciouni: "2000",
-    precioventa: "habilitado",
-    editar: "editar",
-  },
-  {
-    id: 3,
-    codigo: "B9466",
-    nombre: "Pan Hamburguesa",
-    peso: "850",
-    volumen: "Artesanal",
-    descripcion: "5",
-    preciouni: "800",
-    precioventa: "habilitado",
-    editar: "editar",
-  },
-  {
-    id: 4,
-    codigo: "B501238",
-    nombre: "Pan Hamburguesa Guadalupe",
-    peso: "625",
-    volumen: "Ajonjolí",
-    descripcion: "5",
-    preciouni: "3000",
-    precioventa: "habilitado",
-    editar: "editar",
-  },
-  {
-    id: 5,
-    codigo: "B505354",
-    nombre: "Pan Tajado",
-    peso: "730",
-    volumen: "Tradicional",
-    descripcion: "no aplica",
-    preciouni: "80",
-    precioventa: "habilitado",
-    editar: "editar",
-  },
-  {
-    id: 6,
-    codigo: "B9673",
-    nombre: "Pan Hamburguesa Brioche",
-    peso: "850",
-    volumen: "Brillo",
-    descripcion: "5",
-    preciouni: "No Aplica",
-    precioventa: "inhabilitado",
-    editar: "editar",
-  },
-  {
-    id: 7,
-    codigo: "B22726",
-    nombre: "Pan Perro Cluster",
-    peso: "830",
-    volumen: "Ajonjolí",
-    descripcion: "no aplica",
-    preciouni: "100",
-    precioventa: "inhabilitado",
-    editar: "editar",
-  },
-  {
-    id: 8,
-    codigo: "B22726",
-    nombre: "Pan Perro Cluster",
-    peso: "830",
-    volumen: "Ajonjolí",
-    descripcion: "no aplica",
-    preciouni: "100",
-    precioventa: "inhabilitado",
-    editar: "editar",
-  },
-  {
-    id: 9,
-    codigo: "B22726",
-    nombre: "Pan Perro Cluster",
-    peso: "830",
-    volumen: "Ajonjolí",
-    descripcion: "no aplica",
-    preciouni: "100",
-    precioventa: "inhabilitado",
-    editar: "editar",
-  },
-  {
-    id: 10,
-    codigo: "B22726",
-    nombre: "Pan Perro Cluster",
-    peso: "830",
-    volumen: "Ajonjolí",
-    descripcion: "no aplica",
-    preciouni: "100",
-    precioventa: "inhabilitado",
-    editar: "editar",
-  },
-];
 const paginationComponentOptions = {
   rowsPerPageText: "Filas por página",
   rangeSeparatorText: "de",
@@ -208,21 +86,58 @@ const customStyles = {
 };
 
 const Productos = () => {
+  useEffect(()=>{
+    darProductos();
+    },[]);
+  const [productos,setProductos] = useState([]);
+  const darProductos= async()=>{
+    try {
+      const response = await Api.get('/producto/darProductos');
+      setProductos(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleSubmit= async (e)=>{
+    e.preventDefault();
+    agregarProducto();
+  }
+
+  const agregarProducto= async()=>{
+    try {
+      const response = await Api.post('/producto/agregar', {
+        
+          "nombre": "string",
+          "descripcion": "string",
+          "peso": 0,
+          "volumen": 0,
+          "PrecioUnitario": 0,
+          "PrecioVenta": 0
+        
+      });
+      darProductos();
+      // setProductos(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  // const handleSubmit = (event) => {
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
 
-    setValidated(true);
-  };
+  //   setValidated(true);
+  // };
   return (
     <>
       <Header />
@@ -246,7 +161,7 @@ const Productos = () => {
               </div>
               <DataTable
                 columns={columns}
-                data={data}
+                data={productos}
                 showGridlines
                 selectableRows
                 pagination
@@ -264,49 +179,49 @@ const Productos = () => {
                     validated={validated}
                     onSubmit={handleSubmit}
                   >
-                    <Row className="mb-2 mt-4">
-                      <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
-                        <Form.Label>Código de producto</Form.Label>
-                        <Form.Control required type="number" placeholder="Ingresa el código del producto" defaultValue="Mark"/>
-                        <Form.Control.Feedback>
-                          Looks good!
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                      <Form.Group as={Col} md="6" controlId="validationCustom02" >
+                    <Row className="mb-1 mt-4 px-4">
+                      <Form.Group as={Col} md="6" sm="12" controlId="validationCustom02" className="mt-3">
                         <Form.Label>Nombre</Form.Label>
-                        <Form.Control required type="text" placeholder="Ingresa el nombre" defaultValue="Otto"/>
+                        <Form.Control required type="text" name="nombre" placeholder="Ingresa el nombre"/>
+                        <Form.Control.Feedback>
+                          Looks good!
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control required type="text" name="descripcion" placeholder="Ingresa la descripción del producto"/>
                         <Form.Control.Feedback>
                           Looks good!
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Row>
-                    <Row className="mb-2 mt-4">
-                        <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
+                    <Row className="mb-1 mt-2 px-4">
+                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
                             <Form.Label>Peso</Form.Label>
-                            <Form.Control required type="number" placeholder="Ingresa el peso del producto" defaultValue="Mark"/>
+                            <Form.Control required type="number" name="peso" placeholder="Ingresa el peso del producto"/>
                             <Form.Control.Feedback>
                             Looks good!
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} md="6" controlId="validationCustom01">
+                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
                             <Form.Label>Volumen</Form.Label>
-                            <Form.Control required type="number" placeholder="Ingresa el volumen" defaultValue="Mark"/>
+                            <Form.Control required type="number" name="volumen" placeholder="Ingresa el volumen" defaultValue="Mark"/>
                             <Form.Control.Feedback>
                             Looks good!
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
-                    <Row className="mb-2 mt-4">
-                        <Form.Group as={Col} md="6" controlId="validationCustom01" className="px-4">
+                    <Row className="mb-1 mt-2 px-4">
+                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
                             <Form.Label>Precio unitario</Form.Label>
-                            <Form.Control required type="number" placeholder="Ingresa el precio x unidad" defaultValue="preciouni"/>
+                            <Form.Control required type="number" name="PrecioUnitario" placeholder="Ingresa el precio x unidad" defaultValue="preciouni"/>
                             <Form.Control.Feedback>
                             Looks good!
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} md="6" controlId="validationCustom01">
+                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
                             <Form.Label>Precio Venta</Form.Label>
-                            <Form.Control required type="number" placeholder="Ingresa el precio final" defaultValue="precioventa"/>
+                            <Form.Control required type="number" name="PrecioVenta" placeholder="Ingresa el precio final" defaultValue="precioventa"/>
                             <Form.Control.Feedback>
                             Looks good!
                             </Form.Control.Feedback>

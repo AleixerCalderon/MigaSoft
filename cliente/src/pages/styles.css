@@ -148,7 +148,7 @@ body{
     }
 }
 .contenido-tablas{
-    width: 80%;
+    width: 90%;
     margin: 50px auto;
     
 }
@@ -200,5 +200,8 @@ body{
     }
     .add-item h4{
         display: none;
+    }
+    .modal-dialog{
+        width: 90%;
     }
 }

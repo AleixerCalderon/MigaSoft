@@ -8,8 +8,18 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../assets/logo-migasoft.png";
 import icon1 from "../assets/icon-user.svg";
 import icon2 from "../assets/icon-logout.svg";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  function logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    window.location.href = '/';
+  }
+  const [usuario, setUsuario]=useState([]) ;
+  useEffect(()=>{
+    setUsuario(localStorage.getItem("usuario"));
+  }, []);
   return (
     <header className="header">
       <div className="brand">
@@ -21,12 +31,12 @@ const Header = () => {
         <ul className="link-list">
           <li>
             <Link className="link" to="/profile">
-              <img src={icon1} alt="User" /> Hola, Admin
+              <img src={icon1} alt="User" /> Hola, {usuario}
             </Link>
           </li>
           <li>
             <Link className="link" to="/">
-              <img src={icon2} alt="User" /> Cerrar sesión
+              <img src={icon2} alt="User" /><a href="" onClick={logout}>Cerrar sesión</a>
             </Link>
           </li>
         </ul>
