@@ -7,7 +7,7 @@ MigaSoft es una aplicación web Fullstack diseñada para la gestión de producto
 ## Objetivos
 
 - Control de inventarios en bodega despacho y vendedores.
-- gestiona ordesnes de compra por parte del cliente.
+- Gestiona ordesnes de compra por parte del cliente.
 - Gestionar productos comestibles (panaderia) de manera eficiente.
 - Integrar con sistemas de compras.
 - Implementar trazabilidad y coordinación logística.
@@ -29,9 +29,9 @@ MigaSoft es una aplicación web Fullstack diseñada para la gestión de producto
 
 ## Tecnologías Utilizadas
 
-- **Frontend**: Node.js, React.js, Bootstrap
-- **Backend**: [Node.js, sequalice
-- **Base de Datos**: Mysql
+- **Frontend**: Node.js, React.js, Bootstrap.
+- **Backend**: Node.js, sequelize.
+- **Base de Datos**: Mysql.
 
 ## Instalación
 
