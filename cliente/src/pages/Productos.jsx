@@ -13,7 +13,7 @@ import "./responsive.css";
 import IconPro from "../assets/icon-productos.svg";
 import IconAdd from "../assets/icon-agregar.svg";
 import Api from "../AxiosConfig";
-
+import Alert from "react-bootstrap/Alert";
 
 const paginationComponentOptions = {
   rowsPerPageText: "Filas por página",
@@ -50,23 +50,29 @@ const customStyles = {
 
 const Productos = () => {
   const [producto, setProducto] = useState([]);
-  const [edit, setEdit]= useState([]);
-  const [productId, setProductId]= useState([]);
+  const [edit, setEdit] = useState([]);
+  const [productId, setProductId] = useState([]);
 
-  const handleEdit = (producto)=>{
+  const handleEdit = (producto) => {
     setProducto({
-        nombre: producto.nombre,
-        descripcion: producto.descripcion,
-        peso: producto.descripcion,
-        volumen: producto.volumen,
-        PrecioUnitario: producto.PrecioUnitario,
-        PrecioVenta: producto.PrecioVenta,
+      nombre: producto.nombre,
+      descripcion: producto.descripcion,
+      peso: producto.peso,
+      volumen: producto.volumen,
+      PrecioUnitario: producto.PrecioUnitario,
+      PrecioVenta: producto.PrecioVenta,
+      habilitado: producto.habilitado,
     });
     setProductId(producto.id);
     handleShow();
     setEdit(true);
-  }
-  
+  };
+
+  const handleDelete = (producto) => {
+    setProductId(producto.id);
+    eliminarProducto();
+  };
+
   const columns = [
     {
       name: "Id",
@@ -104,86 +110,121 @@ const Productos = () => {
       sortable: true,
     },
     {
-      name:"Editar",
-      cell: (row)=>(
-        <button className="btn btn-primary" onClick={()=>handleEdit(row)}>Editar</button>
+      name: "Editar",
+      cell: (row) => (
+        <button className="btn btn-primary" onClick={() => handleEdit(row)}>
+          Editar
+        </button>
       ),
-      button:true,
-    }
+      button: true,
+    },
+    {
+      name: "Eliminar",
+      cell: (row) => (
+        <button className="btn btn-danger" onClick={() => handleDelete(row)}>
+          Eliminar
+        </button>
+      ),
+      button: true,
+    },
+    {
+      name: "Habilitado",
+      selector: (row) => row.habilitado,
+      sortable: true,
+    },
   ];
-  useEffect(()=>{
+  useEffect(() => {
     darProductos();
     setEdit(false);
-    },[]);
-  const [productos,setProductos] = useState([]);
-  
-  const handleChange = (e)=>{
+  }, []);
+  const [productos, setProductos] = useState([]);
+
+  const handleChange = (e) => {
     setProducto({
       ...producto,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
-  const darProductos= async()=>{
+  const darProductos = async () => {
     try {
-      const response = await Api.get('/producto/darProductos');
+      const response = await Api.get("/producto/darProductos");
       setProductos(response.data);
     } catch (error) {
       console.error(error);
     }
-  }
- 
-  const handleSubmit= async (e)=>{
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (edit) {
       editarProducto();
-    }else{
+    } else {
       agregarProducto();
     }
-  }
+    handleShowAlert();
+  };
 
-  const agregarProducto= async()=>{
+  const agregarProducto = async () => {
     try {
-      const response = await Api.post('/producto/agregar', producto);
+      const response = await Api.post("/producto/agregar", producto);
       darProductos();
       setProducto({
         nombre: "",
-        descripcion:"",
-        peso:"",
-        volumen:"",
-        PrecioUnitario:"",
-        PrecioVenta:"",
+        descripcion: "",
+        peso: "",
+        volumen: "",
+        PrecioUnitario: "",
+        PrecioVenta: "",
+        habilitado: ""
       });
       handleClose();
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  const editarProducto= async()=>{
+  const editarProducto = async () => {
     try {
-      const response = await Api.put('/producto/' + productId , producto);
+      const response = await Api.put("/producto/" + productId, producto);
       darProductos();
       setProducto({
         nombre: "",
-        descripcion:"",
-        peso:"",
-        volumen:"",
-        PrecioUnitario:"",
-        PrecioVenta:"",
+        descripcion: "",
+        peso: "",
+        volumen: "",
+        PrecioUnitario: "",
+        PrecioVenta: "",
+        habilitado: ""
       });
       handleClose();
       setProductId(null);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+  const eliminarProducto = async () => {
+    try {
+      const response = await Api.delete("/producto/" + productId);
+      darProductos();
+      handleShowAlert();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [validated, setValidated] = useState(false);
-
+  const [showAlert, setShowAlert] = useState(false);
+  const handleShowAlert = ()=>{
+    setShowAlert(true);
+    setTimeout(()=>{
+      setShowAlert(false);
+    }, 5000);
+  }
   return (
     <>
       <Header />
@@ -220,96 +261,116 @@ const Productos = () => {
                   <Modal.Title>Crear Producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  {/* <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={handleSubmit}
-                  >
-                    <Row className="mb-1 mt-4 px-4">
-                      <Form.Group as={Col} md="6" sm="12" controlId="validationCustom02" className="mt-3">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control required type="text" name="nombre" placeholder="Ingresa el nombre"/>
-                        <Form.Control.Feedback>
-                          Looks good!
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                      <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control required type="text" name="descripcion" placeholder="Ingresa la descripción del producto"/>
-                        <Form.Control.Feedback>
-                          Looks good!
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Row>
-                    <Row className="mb-1 mt-2 px-4">
-                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
-                            <Form.Label>Peso</Form.Label>
-                            <Form.Control required type="number" name="peso" placeholder="Ingresa el peso del producto"/>
-                            <Form.Control.Feedback>
-                            Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
-                            <Form.Label>Volumen</Form.Label>
-                            <Form.Control required type="number" name="volumen" placeholder="Ingresa el volumen" defaultValue="Mark"/>
-                            <Form.Control.Feedback>
-                            Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-1 mt-2 px-4">
-                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
-                            <Form.Label>Precio unitario</Form.Label>
-                            <Form.Control required type="number" name="PrecioUnitario" placeholder="Ingresa el precio x unidad" defaultValue="preciouni"/>
-                            <Form.Control.Feedback>
-                            Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="6" sm="12" controlId="validationCustom01" className="mt-3">
-                            <Form.Label>Precio Venta</Form.Label>
-                            <Form.Control required type="number" name="PrecioVenta" placeholder="Ingresa el precio final" defaultValue="precioventa"/>
-                            <Form.Control.Feedback>
-                            Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Row>
-                    <Form.Group className="mb-6 mt-4 ps-3">
-                        <Button type="submit">Guardar</Button>
-                    </Form.Group>
-                    
-                  </Form> */}
                   <Form onSubmit={handleSubmit}>
                     <div>
-                      <label htmlFor="" className="form-label">Nombre</label>
-                      <input className="form-control" type="text" name="nombre" value={producto.nombre} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Nombre
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="nombre"
+                        value={producto.nombre}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="" className="form-label">Descripcion</label>
-                      <input className="form-control" type="text" name="descripcion" value={producto.descripcion} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Descripcion
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="descripcion"
+                        value={producto.descripcion}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="" className="form-label">Peso</label>
-                      <input className="form-control" type="text" name="peso" value={producto.peso} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Peso
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="peso"
+                        value={producto.peso}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="" className="form-label">Volumen</label>
-                      <input className="form-control" type="text" name="volumen" value={producto.volumen} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Volumen
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="volumen"
+                        value={producto.volumen}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="" className="form-label">Precio Unitario</label>
-                      <input className="form-control" type="text" name="PrecioUnitario" value={producto.PrecioUnitario} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Precio Unitario
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="PrecioUnitario"
+                        value={producto.PrecioUnitario}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="" className="form-label">Precio Venta</label>
-                      <input className="form-control" type="text" name="PrecioVenta" value={producto.PrecioVenta} onChange={handleChange} required/>
+                      <label htmlFor="" className="form-label">
+                        Precio Venta
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="PrecioVenta"
+                        value={producto.PrecioVenta}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
-                      <button type="submit" className="btn btn-success">Guardar</button>
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Habilitar
+                      </label>
+                      <input
+                        className="form-control"
+                        type="checkbox"
+                        name="habilitado"
+                        value={producto.habilitado}
+                        onChange={handleChange}
+                        class="form-check-input"/>
+                    </div>
+                    <div>
+                      <button type="submit" className="btn btn-success">
+                        Guardar
+                      </button>
                     </div>
                   </Form>
                 </Modal.Body>
               </Modal>
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          { showAlert && (
+            <Alert key='success' variant='success' onClose={() => setShowAlert(false)}>
+              La consulta se ha realizado exitosamente
+            </Alert>
+            )
+          }
           </Col>
         </Row>
       </Container>
