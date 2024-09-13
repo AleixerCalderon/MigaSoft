@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import './dashboard.css';
 import icon1 from "../assets/icon-inventario.svg";
 import icon2 from "../assets/icon-roles.svg";
-import icon3 from "../assets/icon-bodega.svg";
+import icon3 from "../assets/icon-bodega-v2.svg";
 import icon4 from "../assets/icon-analitca.svg";
-import icon5 from "../assets/icon-ordenes.svg";
-import icon6 from "../assets/icon-user.svg";
-import icon7 from "../assets/icon-totalProductos.svg";
+import icon5 from "../assets/icon-productos.svg";
+import icon6 from "../assets/icon-traslados.svg";
+import icon7 from "../assets/icon-lotes.svg";
 
 const Dashboard = () => {
   const cards = [
@@ -16,9 +16,9 @@ const Dashboard = () => {
     { to: "/usuarios", icon: icon2, title: "Usuarios" },
     { to: "/bodega", icon: icon3, title: "Bodega" },
     { to: "/reportes", icon: icon4, title: "Reportes" },
-    { to: "/ordenes", icon: icon5, title: "Órdenes" },
-    { to: "/configuraciones", icon: icon6, title: "Configuraciones" },
-    { to: "/total-productos", icon: icon7, title: "Total productos", extra: <p className="text-light" style={{ fontSize: '24px' }}>640</p> }
+    { to: "/productos", icon: icon5, title: "Productos" },
+    { to: "/traslados", icon: icon6, title: "Traslados" },
+    { to: "/lotes", icon: icon7, title: "Lotes" }
   ];
 
   return (

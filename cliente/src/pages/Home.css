@@ -1,19 +1,28 @@
 .bg-image {
     background-image: url('../assets/burger.png');
-    background-size: cover; /* O 'contain' según lo que necesites */
+    background-size: cover; 
     background-position: center;
-    min-height: 100vh; /* Cambiado a min-height */
+    min-height: 60vh;
+    padding: 40px; 
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    margin: 0 10px; /* Agregado margen entre imágenes */
+    margin: 0 10px; 
+}
+h1,h2 {
+    font-size: 3rem;
+    color: black;
+}
+h4{
+    color: black;
 }
 
 p{
-    font-size: 1.2rem;
+    text-align: center;
+    font-size: 1.8rem;
     color: black;
 }
 

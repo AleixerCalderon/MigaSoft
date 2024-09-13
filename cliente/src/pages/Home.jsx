@@ -37,10 +37,11 @@ const HomePage = () => {
             <>
                 <Header />
                 {usuario ? <pre>{JSON.stringify(usuario, null, 1)}</pre> : <p>Cargando...</p>}
-
+                <div className="bg-image">
                 <div className="container">
-                    <h2>Bienvenido a Pan Diario</h2>
+                    <h1>Bienvenido a Pan Diario</h1>
                     <h1>Una Franquicia Bimbo</h1>
+                    <h4>Best place to work 2024</h4>
                 </div>
                 <p>
                     Servicio al cliente y cultura empresarial inigualables,
@@ -50,6 +51,7 @@ const HomePage = () => {
                     Aquí puedes encontrar información relevante sobre nuestros servicios y productos.
                     Nos esforzamos por ofrecer la mejor calidad y atención a nuestros clientes.
                 </p>
+                </div>
                 <Dashboard/>
                 <Footer />
             </>
