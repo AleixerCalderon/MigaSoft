@@ -50,7 +50,7 @@ class ProductoRepository {
     if (!producto) {
       throw new Error('Producto no existe');
     }
-    producto.habilitado = !producto.habilitado;
+    producto.habilitado = false;
     await producto.save();
     return producto;
   }

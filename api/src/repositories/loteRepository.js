@@ -29,8 +29,8 @@ class LoteRepository {
                         }
                     },
                     {
-                        '$Producto.nombre$':{
-                            [Op.like]:`%${nombreOCodigoBarras}%`
+                        '$Producto.nombre$': {
+                            [Op.like]: `%${nombreOCodigoBarras}%`
                         }
                     }
                 ]
@@ -42,16 +42,16 @@ class LoteRepository {
     async getLoteById(id) {
         return await Lotes.findByPk(id);
     }
-    async getLoteAll() {      
+    async getLoteAll() {
         return await Lotes.findAll({
-            include:[
+            include: [
                 {
-                  model:Productos,
-                  as:'Producto',
-                  attributes:['nombre','descripcion','peso','volumen', 'PrecioUnitario', 'PrecioVenta'],
+                    model: Productos,
+                    as: 'Producto',
+                    attributes: ['nombre', 'descripcion', 'peso', 'volumen', 'PrecioUnitario', 'PrecioVenta'],
                 }
-              ]
-        });        
+            ]
+        });
     }
 
     async updateLote(id, data) {
@@ -59,7 +59,28 @@ class LoteRepository {
     }
 
     async deleteLote(id) {
-        return await Lotes.destroy({ where: { id } });
+        try {
+            return await Lotes.destroy({ where: { id } });
+        } catch (error) {
+            if (error instanceof ForeignKeyConstraintError) {
+                try {
+                    const loteD = await this.deshabilitarLote(id);
+                    return loteD;
+                } catch (error) {
+                    throw new Error('Error al deshabilitar el lote: ', error);
+                }
+            }
+        }
+    }
+
+    async deshabilitarLote(id) {
+        const lote = await Lotes.findByPk(id);
+        if (!lote) {
+            throw new Error('Lote no existe');
+        }
+        lote.habilitado = false;
+        await lote.save();
+        return lote;
     }
 }
 
