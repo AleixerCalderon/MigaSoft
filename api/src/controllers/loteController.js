@@ -2,7 +2,7 @@ import loteService from '../services/loteService.js';
 
 class LoteController {
     async getLote(req, res) {
-        try {
+        try {           
             const lote = await loteService.getLoteById(req.params.id);
             res.json(lote);
         } catch (error) {
@@ -33,6 +33,14 @@ class LoteController {
         try {
             const lote = await loteService.addLote(req.body);
             res.json(lote);
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+    async getLotes(req, res) {
+        try {         
+            const lotes = await loteService.getLoteAll();
+            res.json(lotes);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }

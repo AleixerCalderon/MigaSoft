@@ -1,5 +1,5 @@
 import { Productos } from '../models/index.js';
-import {Op}  from "sequelize";
+import { ForeignKeyConstraintError, Op } from "sequelize";
 
 
 class ProductoRepository {
@@ -31,7 +31,28 @@ class ProductoRepository {
   }
 
   async deleteProducto(id) {
-    return await Productos.destroy({ where: { id } });
+    try {
+      return await Productos.destroy({ where: { id } });
+    } catch (error) {
+      if (error instanceof ForeignKeyConstraintError) {
+        try {
+          const productoD = await this.deshabilitarProducto(id);
+          return productoD;
+        } catch (error) {
+          throw new Error('Error al deshabilitar el producto: ', error);
+        }
+      }
+    }
+  }
+
+  async deshabilitarProducto(id) {
+    const producto = await Productos.findByPk(id);
+    if (!producto) {
+      throw new Error('Producto no existe');
+    }
+    producto.habilitado = !producto.habilitado;
+    await producto.save();
+    return producto;
   }
 }
 

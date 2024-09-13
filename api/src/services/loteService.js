@@ -16,5 +16,8 @@ class LoteService {
     async deleteLote(id) {
         return await LoteRepository.deleteLote(id);
     }
+    async getLoteAll() {
+        return await LoteRepository.getLoteAll();
+    }        
 }
 export default new LoteService();

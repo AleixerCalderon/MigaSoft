@@ -4,6 +4,24 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+
+/**
+* @swagger
+* /lote/darLotes:
+*   get:
+*     summary: Obtener todos los lotes
+*     description: Obtiene los lotes.
+*     tags:
+*       - Lotes
+*     responses:
+*       200:
+*         description: Lista de lotes.
+*       404:
+*         description: lotes no encontrados.
+*/
+router.get('/darLotes', authMiddleware, loteController.getLotes);
+
+
 /**
 * @swagger
 * /lote/{id}:
@@ -141,6 +159,8 @@ router.put('/:id', authMiddleware, loteController.updateLote);
 *         description: Error en la solicitud.
 */
 router.delete('/:id', authMiddleware, loteController.deleteLote);
+
+
 
 
 export default router;

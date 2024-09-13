@@ -32,6 +32,10 @@ const ProductosModel = function(sequelize) {
       type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
+    habilitado:{
+       type: DataTypes.BOOLEAN,
+       allowNull: true 
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: true,

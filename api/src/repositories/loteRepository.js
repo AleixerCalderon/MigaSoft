@@ -42,6 +42,10 @@ class LoteRepository {
     async getLoteById(id) {
         return await Lotes.findByPk(id);
     }
+    async getLoteAll() {
+      
+        return await Lotes.findAll();
+    }
 
     async updateLote(id, data) {
         return await Lotes.update(data, { where: { id }, individualHooks: true, });
