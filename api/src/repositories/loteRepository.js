@@ -42,9 +42,16 @@ class LoteRepository {
     async getLoteById(id) {
         return await Lotes.findByPk(id);
     }
-    async getLoteAll() {
-      
-        return await Lotes.findAll();
+    async getLoteAll() {      
+        return await Lotes.findAll({
+            include:[
+                {
+                  model:Productos,
+                  as:'Producto',
+                  attributes:['nombre','descripcion','peso','volumen', 'PrecioUnitario', 'PrecioVenta'],
+                }
+              ]
+        });        
     }
 
     async updateLote(id, data) {
