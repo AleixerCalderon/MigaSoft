@@ -34,7 +34,7 @@ class InventarioRepository {
                 {
                     model: Lotes,
                     as: 'Lote',
-                    attributes: ['CodigoLote'],
+                    attributes: ['CodigoLote','FechaEntrada','FechaVencimiento','CodigoBarras'],
                     include: {
                         model: Productos,
                         as: 'Producto',
