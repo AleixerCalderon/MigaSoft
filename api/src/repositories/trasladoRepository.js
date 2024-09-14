@@ -104,7 +104,7 @@ class TrasladoRepository {
                         fechaMovimiento: new Date(),
                         tipoMovimiento: 'Salida', // O "Traslado-Salida"
                         cantidad: Cantidad,
-                        descripcion: `Salida por traslado a la bodega ${traslado.idBodegaDestino}`
+                        descripcion: `Salida por traslado N#: ${traslado.id}, a la bodega ${traslado.idBodegaDestino}`
                     }, { transaction: t });
 
                     // Insertar el movimiento para la bodega destino
@@ -114,7 +114,7 @@ class TrasladoRepository {
                         fechaMovimiento: new Date(),
                         tipoMovimiento: 'Entrada', // O "Traslado-Entrada"
                         cantidad: Cantidad,
-                        descripcion: `Entrada por traslado desde la bodega ${traslado.idBodegaOrigen}`
+                        descripcion: `Entrada por traslado N#: ${traslado.id}, desde la bodega ${traslado.idBodegaOrigen}`
                     }, { transaction: t });
                 }
 
