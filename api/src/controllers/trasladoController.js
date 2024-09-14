@@ -50,7 +50,7 @@ class TrasladoController {
             const traslado = await trasladoService.confirmarTraslado(req.params.id);
             res.json(traslado);
         } catch (error) {
-            res.status(404).json({ error: 'Traslado no encontrado Error: ' + error });
+            res.status(404).json({ error: ' ' + error });
         }
     }   
     

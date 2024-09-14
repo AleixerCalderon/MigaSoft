@@ -40,7 +40,7 @@ Bodegas.associate({ TiposBodega });
 TiposBodega.associate({ Bodegas });
 Inventario.associate({ Bodegas, Lotes });
 Lotes.associate({ Productos });
-Traslados.associate({ Bodegas });
+Traslados.associate({ Bodegas,DetalleTraslados });
 DetalleTraslados.associate({ Traslados, Lotes });
 MovimientosInventarioBodega.associate({Bodegas,Lotes});
 

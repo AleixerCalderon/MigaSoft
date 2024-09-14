@@ -58,7 +58,7 @@ class TrasladoRepository {
                 // Obtener el traslado por ID
                 const traslado = await Traslados.findByPk(idTraslado, {
                     include: [
-                        { model: DetalleTraslados, as: 'detalles' } // Incluye los detalles del traslado
+                        { model: DetalleTraslados, as: 'Detalles' } // Incluye los detalles del traslado
                     ],
                     transaction: t
                 });
@@ -66,13 +66,16 @@ class TrasladoRepository {
                 if (!traslado) {
                     throw new Error('El traslado no existe');
                 }
+                if(traslado.estado == 'Confirmado'){
+                    throw new Error('El traslado ya ha sido confirmado');
+                }
 
                 // Recorrer cada detalle del traslado para actualizar el inventario
-                for (const detalle of traslado.detalles) {
-                    const { idLote, cantidad } = detalle;
+                for (const detalle of traslado.Detalles) {                   
+                    const { idLote, Cantidad } = detalle.dataValues;                  
                     // Restar la cantidad de la bodega origen
                     await Inventario.increment(
-                        { cantidad: -cantidad },
+                        { Cantidad: -Cantidad },
                         {
                             where: {
                                 idBodega: traslado.idBodegaOrigen,
@@ -84,7 +87,7 @@ class TrasladoRepository {
 
                     // Sumar la cantidad a la bodega destino
                     await Inventario.increment(
-                        { cantidad: cantidad },
+                        { Cantidad: Cantidad },
                         {
                             where: {
                                 idBodega: traslado.idBodegaDestino,
@@ -100,7 +103,7 @@ class TrasladoRepository {
                         idLote: idLote,
                         fechaMovimiento: new Date(),
                         tipoMovimiento: 'Salida', // O "Traslado-Salida"
-                        cantidad: cantidad,
+                        cantidad: Cantidad,
                         descripcion: `Salida por traslado a la bodega ${traslado.idBodegaDestino}`
                     }, { transaction: t });
 
@@ -110,7 +113,7 @@ class TrasladoRepository {
                         idLote: idLote,
                         fechaMovimiento: new Date(),
                         tipoMovimiento: 'Entrada', // O "Traslado-Entrada"
-                        cantidad: cantidad,
+                        cantidad: Cantidad,
                         descripcion: `Entrada por traslado desde la bodega ${traslado.idBodegaOrigen}`
                     }, { transaction: t });
                 }
@@ -124,8 +127,7 @@ class TrasladoRepository {
 
             return result;
         } catch (error) {
-            console.error('Error al confirmar traslado:', error);
-            throw new Error('No se pudo confirmar el traslado');
+            throw new Error('No se pudo confirmar el traslado: '+  error);
         }
     }
 }

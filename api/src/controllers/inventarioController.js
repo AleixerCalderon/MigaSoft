@@ -16,7 +16,16 @@ class InventarioController {
         } catch (error) {
             res.status(404).json({ error: 'Inventario no encontrado: ' + error });
         }
-    } 
+    }
+    async getMovimientosInventario(req, res) {
+        try {
+            const movimientos = await InventarioService.getMovimientosInventario();
+            res.json(movimientos);
+        } catch (error) {
+            res.status(404).json({ error: 'Movimientos no encontrado: ' + error });
+        }
+    }   
+    
 }
 
 export default new InventarioController();

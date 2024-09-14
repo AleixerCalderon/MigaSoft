@@ -8,5 +8,9 @@ class InventarioService {
     async getInventarioById (id) {
         return await InventarioRepository.getInventarioById(id);
     };
+    async getMovimientosInventario() {
+        return await InventarioRepository.getMovimientosInventario();
+    };
+
 }
 export default new InventarioService();

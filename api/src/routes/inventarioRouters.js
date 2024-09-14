@@ -4,6 +4,21 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+/**
+* @swagger
+* /Inventario/getMovimientosInventario:
+*   get:
+*     summary: Lista de los movimientos de Inventarios 
+*     description: Obtener la lista de movimientos de inventarios.
+*     tags:
+*       - Inventario
+*     responses:
+*       204:
+*         description: Lista movimientos de Inventario.
+*       400:
+*         description: Error en la solicitud.
+*/
+router.get('/getMovimientosInventario', authMiddleware, InventarioController.getMovimientosInventario);
 
 /**
 * @swagger

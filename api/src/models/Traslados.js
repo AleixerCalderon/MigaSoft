@@ -78,6 +78,10 @@ const TrasladosModel = function (sequelize) {
     ]
   });
   Traslado.associate = (models) => {
+    Traslado.hasMany(models.DetalleTraslados, {
+      foreignKey: 'idTraslado',
+      as: 'Detalles'
+    });
     Traslado.belongsTo(models.Bodegas, {
       foreignKey: 'idBodegaOrigen',
       as: 'BodegaOrigen'
@@ -85,7 +89,7 @@ const TrasladosModel = function (sequelize) {
     Traslado.belongsTo(models.Bodegas, {
       foreignKey: 'idBodegaDestino',
       as: 'BodegaDestino'
-    });
+    });    
   }
   return Traslado;
 };
