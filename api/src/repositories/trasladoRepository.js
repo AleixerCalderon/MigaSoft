@@ -1,4 +1,4 @@
-import { Traslados, DetalleTraslados, sequelize, Inventario, MovimientosInventarioBodega } from '../models/index.js';
+import { Bodegas, Traslados, DetalleTraslados, sequelize, Inventario, MovimientosInventarioBodega } from '../models/index.js';
 //import { Op } from "sequelize";
 
 
@@ -26,7 +26,20 @@ class TrasladoRepository {
         return await Traslados.findByPk(id);
     }
     async getTraslados() {
-        return await Traslados.findAll();
+        return await Traslados.findAll({
+            include: [
+                {
+                    model: Bodegas,
+                    as: 'BodegaOrigen',
+                    attributes: ['nombre'],
+                },
+                {
+                    model: Bodegas,
+                    as: 'BodegaDestino',
+                    attributes: ['nombre'],
+                }
+            ]
+        });
     }
     async getTrasladoXBodegaOrigen(id) {
         return await Traslados.findAll({ where: { idBodegaOrigen: id }, });
