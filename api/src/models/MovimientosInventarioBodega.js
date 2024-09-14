@@ -1,7 +1,7 @@
 import {Sequelize, DataTypes } from 'sequelize';
 
 const MovimientosInventarioBodegaModel = function(sequelize) {
-  return sequelize.define('MovimientosInventarioBodega', {
+  const movimientos = sequelize.define('MovimientosInventarioBodega', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -79,5 +79,16 @@ const MovimientosInventarioBodegaModel = function(sequelize) {
       },
     ]
   });
+  movimientos.associate = (models)=> {
+    movimientos.belongsTo(models.Bodegas, {
+      foreignKey: 'idBodega',
+      as: 'Bodega'
+  });  
+  movimientos.belongsTo(models.Lotes, {
+    foreignKey: 'idLote',
+    as: 'Lote'
+});   
+  };
+  return movimientos;
 };
 export default MovimientosInventarioBodegaModel;

@@ -4,6 +4,111 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+
+/**
+* @swagger
+* /traslado/darTraslados:
+*   get:
+*     summary: Obtener lista de traslados
+*     description: Obtiene todos los traslados.
+*     tags:
+*       - Traslados
+*     responses:
+*       200:
+*         description: Detalles de todos los traslados.
+*       404:
+*         description: traslados no encontrados.
+*/
+router.get('/darTraslados', authMiddleware, TrasladoController.getTraslados);
+
+/**
+* @swagger
+* /traslado/{id}:
+*   get:
+*     summary: Obtener un traslado por ID
+*     description: Obtiene los detalles de un traslado específico.
+*     tags:
+*       - Traslados
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: integer
+*     responses:
+*       200:
+*         description: Detalles del trslado.
+*       404:
+*         description: traslado no encontrado.
+*/
+router.get('/:id', authMiddleware, TrasladoController.getTrasladoById);
+
+/**
+* @swagger
+* /traslado/getTrasladoXBodegaOrigen/{id}:
+*   get:
+*     summary: Obtener un traslado por ID
+*     description: Obtiene los detalles de un traslado específico.
+*     tags:
+*       - Traslados
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: integer
+*     responses:
+*       200:
+*         description: Detalles del trslado.
+*       404:
+*         description: traslado no encontrado.
+*/
+router.get('/getTrasladoXBodegaOrigen/:id', authMiddleware, TrasladoController.getTrasladoXBodegaOrigen);
+
+/**
+* @swagger
+* /traslado/getTrasladoXBodegaDestino/{id}:
+*   get:
+*     summary: Obtener un traslado por ID
+*     description: Obtiene los detalles de un traslado específico.
+*     tags:
+*       - Traslados
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: integer
+*     responses:
+*       200:
+*         description: Detalles del trslado.
+*       404:
+*         description: traslado no encontrado.
+*/
+router.get('/getTrasladoXBodegaDestino/:id', authMiddleware, TrasladoController.getTrasladoXBodegaDestino);
+
+/**
+* @swagger
+* /traslado/confirmarTraslado/{id}:
+*   get:
+*     summary: Obtener un traslado por ID
+*     description: Obtiene los detalles de un traslado específico.
+*     tags:
+*       - Traslados
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: integer
+*     responses:
+*       200:
+*         description: Detalles del trslado.
+*       404:
+*         description: traslado no encontrado.
+*/
+router.get('/confirmarTraslado/:id', authMiddleware, TrasladoController.confirmarTraslado);
+
 /**
  * @swagger
  * /traslado/agregar:

@@ -15,6 +15,7 @@ import LotesModel from "./Lotes.js";
 import ProductosModel from "./Productos.js";
 import TrasladosModel from "./Traslados.js";
 import DetalleTrasladosModel from "./DetalleTraslados.js";
+import MovimientosInventarioBodegaModel from "./MovimientosInventarioBodega.js";
 
 // instancia del modelo
 const User = usuarioModel(sequelize);
@@ -29,6 +30,7 @@ const Productos = ProductosModel(sequelize);
 const tipoIdentificacion = tipoIdentificacionModel(sequelize);
 const Traslados = TrasladosModel(sequelize);
 const DetalleTraslados = DetalleTrasladosModel(sequelize);
+const MovimientosInventarioBodega = MovimientosInventarioBodegaModel(sequelize);
 
 //Asociar
 User.associate({ Persona, Roles, RolesUsuario });
@@ -40,6 +42,7 @@ Inventario.associate({ Bodegas, Lotes });
 Lotes.associate({ Productos });
 Traslados.associate({ Bodegas });
 DetalleTraslados.associate({ Traslados, Lotes });
+MovimientosInventarioBodega.associate({Bodegas,Lotes});
 
 
 sequelize.sync();
@@ -56,5 +59,6 @@ export {
     Lotes,
     Productos,
     Traslados,
-    DetalleTraslados
+    DetalleTraslados,
+    MovimientosInventarioBodega
 };
