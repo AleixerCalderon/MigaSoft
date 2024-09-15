@@ -13,22 +13,20 @@ const HomePage = () => {
 
     return (
             <>
-                <Header />               
-                <div className="bg-image">
-                <div className="container">
-                    <h1>Bienvenido a Pan Diario</h1>
-                    <h1>Una Franquicia Bimbo</h1>
-                    <h4>Best place to work 2024</h4>
-                </div>
-                <p>
-                    Servicio al cliente y cultura empresarial inigualables,
-                    ambiente de trabajo excepcional para personas talentosas.
-                </p>
-                <p>
-                    Aquí puedes encontrar información relevante sobre nuestros servicios y productos.
-                    Nos esforzamos por ofrecer la mejor calidad y atención a nuestros clientes.
-                </p>
-                </div>
+                <Header />  
+                    <div className="bg-image">
+                    <div className="container">
+                        <h1>Bienvenido a Pan Diario<br/>
+                        Una Franquicia Bimbo</h1>
+                        <h3>Best place to work 2024</h3>
+                    <p>
+                        Servicio al cliente y cultura empresarial inigualables,
+                        ambiente de trabajo excepcional para personas talentosas.<br/>
+                        Aquí puedes encontrar información relevante sobre nuestros servicios y productos.
+                        Nos esforzamos por ofrecer la mejor calidad y atención a nuestros clientes.
+                    </p>
+                    </div>
+                    </div>
                 <Dashboard/>
                 <Footer />
             </>

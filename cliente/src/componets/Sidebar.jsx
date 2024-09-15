@@ -17,7 +17,7 @@ const Sidebar = () => {
           <li>
           
             <Link className="link" to="/home">
-            <img src={icon5} alt="Inventario"/>Ir al inicio
+            <img src={icon5} alt="Inicio"/>Ir al inicio
             </Link>
           </li>
           <li>
@@ -28,12 +28,12 @@ const Sidebar = () => {
           
           <li>
             <Link className="link" to="/bodega">
-            <img src={icon3} alt="Inventario"/>Bodega
+            <img src={icon3} alt="Bodega"/>Bodega
             </Link>
           </li>
           <li>
             <Link className="link" to="/lotes">
-            <img src={icon8} alt="Inventario"/>Lotes
+            <img src={icon8} alt="Lotes"/>Lotes
             </Link>
           </li>
           <li>
@@ -43,17 +43,17 @@ const Sidebar = () => {
           </li>
           <li>
             <Link className="link" to="/traslados">
-            <img src={icon6} alt="Inventario"/>Traslados
+            <img src={icon6} alt="Traslados"/>Traslados
             </Link>
           </li>
           <li>
             <Link className="link" to="/usuarios">
-            <img src={icon2} alt="Inventario"/>Usuarios
+            <img src={icon2} alt="Usuarios"/>Usuarios
             </Link>
           </li>
           <li>
             <Link className="link" to="/reportes">
-            <img src={icon4} alt="Inventario"/>Reportes
+            <img src={icon4} alt="Reportes"/>Reportes
             </Link>
           </li>
         </ul>

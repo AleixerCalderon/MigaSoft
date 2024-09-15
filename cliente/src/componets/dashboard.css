@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .card {
   width: 50%;
   max-width: 300px; 
@@ -12,14 +11,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px; /* Add margin to separate the cards */
+  margin: 20px; 
   border-radius: 10px;
   background-color: #928b90;
   color: #ffffff;
 }
 
 .card:hover {
-  background-color: #3f86dc; 
+  background-color: #0066FF; 
+  transform: scale(1.1);
 }
 
 .margin-60 {
@@ -34,12 +34,12 @@
 }
 
 .card img {
-  max-height: 70px; /* Adjust the image size as needed */
+  max-height: 70px; 
 }
 
 .logo-container {
   background-color: #676366;
-  padding: 15px; /* Adjust the padding as needed */
+  padding: 15px; 
   display: inline-block;
   margin-top: 20px;
   border-radius: 6px;
