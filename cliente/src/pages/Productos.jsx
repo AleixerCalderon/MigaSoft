@@ -12,6 +12,10 @@ import Form from "react-bootstrap/Form";
 import "./responsive.css";
 import IconPro from "../assets/icon-productos.svg";
 import IconAdd from "../assets/icon-agregar.svg";
+
+import IconCheck from "../assets/task.svg";
+import Iconblock from "../assets/block.svg";
+
 import Api from "../AxiosConfig";
 import Alert from "react-bootstrap/Alert";
 
@@ -25,7 +29,7 @@ const paginationComponentOptions = {
 const customStyles = {
   rows: {
     style: {
-      minHeight: "60px",
+      minHeight: "30px",      
       fontSize: "1em", // override the row height
     },
   },
@@ -40,7 +44,7 @@ const customStyles = {
   cells: {
     style: {
       paddingLeft: "8px", // override the cell padding for data cells
-      paddingRight: "8px",
+      paddingRight: "3px",
       borderStyle: "solid",
       borderColor: "#E5E5E5",
       borderWidth: "1px",
@@ -49,7 +53,15 @@ const customStyles = {
 };
 
 const Productos = () => {
-  const [producto, setProducto] = useState([]);
+  const [producto, setProducto] = useState({
+    nombre: "",
+    descripcion: "",
+    peso: "",
+    volumen: "",
+    PrecioUnitario: "",
+    PrecioVenta: "",
+    habilitado: true
+  });
   const [edit, setEdit] = useState([]);
   const [productId, setProductId] = useState([]);
 
@@ -68,9 +80,9 @@ const Productos = () => {
     setEdit(true);
   };
 
-  const handleDelete = (producto) => {
-    setProductId(producto.id);
-    eliminarProducto();
+  const handleDelete = (producto) => {   
+    setProductId(producto.id);   
+    eliminarProducto(producto.id);
   };
 
   const columns = [
@@ -110,6 +122,13 @@ const Productos = () => {
       sortable: true,
     },
     {
+      name: "Habilitado",
+      selector: (row) => {        
+        return row.habilitado?  <span> <img className="aab-icon text-success" src={IconCheck} alt="Check" /></span>: <span><img className="aab-icon" src={Iconblock} alt="Not Check" /></span>;
+      },
+      sortable: true,
+    },
+    {
       name: "Editar",
       cell: (row) => (
         <button className="btn btn-primary" onClick={() => handleEdit(row)}>
@@ -126,16 +145,12 @@ const Productos = () => {
         </button>
       ),
       button: true,
-    },
-    {
-      name: "Habilitado",
-      selector: (row) => row.habilitado,
-      sortable: true,
-    },
+    },    
   ];
   useEffect(() => {
     darProductos();
     setEdit(false);
+  
   }, []);
   const [productos, setProductos] = useState([]);
 
@@ -175,7 +190,7 @@ const Productos = () => {
         volumen: "",
         PrecioUnitario: "",
         PrecioVenta: "",
-        habilitado: ""
+        habilitado: true
       });
       handleClose();
     } catch (error) {
@@ -194,18 +209,18 @@ const Productos = () => {
         volumen: "",
         PrecioUnitario: "",
         PrecioVenta: "",
-        habilitado: ""
+        habilitado: true
       });
       handleClose();
-      setProductId(null);
+      setProductId(0);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const eliminarProducto = async () => {
+  const eliminarProducto = async (id) => {
     try {
-      const response = await Api.delete("/producto/" + productId);
+      const response = await Api.delete("/producto/" + id);
       darProductos();
       handleShowAlert();
     } catch (error) {
@@ -219,9 +234,9 @@ const Productos = () => {
   const handleShow = () => setShow(true);
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const handleShowAlert = ()=>{
+  const handleShowAlert = () => {
     setShowAlert(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setShowAlert(false);
     }, 5000);
   }
@@ -348,9 +363,14 @@ const Productos = () => {
                         className="form-control"
                         type="checkbox"
                         name="habilitado"
-                        value={producto.habilitado}
-                        onChange={handleChange}
-                        class="form-check-input"/>
+                        checked={producto.habilitado}
+                        onChange={(e)=>
+                        setProducto({
+                          ...producto,
+                          habilitado: e.target.checked,
+                        })
+                        }
+                        class="form-check-input" />
                     </div>
                     <div>
                       <button type="submit" className="btn btn-success">
@@ -365,12 +385,12 @@ const Productos = () => {
         </Row>
         <Row>
           <Col>
-          { showAlert && (
-            <Alert key='success' variant='success' onClose={() => setShowAlert(false)}>
-              La consulta se ha realizado exitosamente
-            </Alert>
+            {showAlert && (
+              <Alert key='success' variant='success' onClose={() => setShowAlert(false)}>
+                La consulta se ha realizado exitosamente
+              </Alert>
             )
-          }
+            }
           </Col>
         </Row>
       </Container>

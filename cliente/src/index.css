@@ -15,3 +15,13 @@ code {
 img{
   width: 150px;
 }
+
+.aab-icon{
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+}
+
+.ikexHN { 
+  min-width: 40px !important;
+}

@@ -14,7 +14,7 @@ const HomePage = () => {
     return (
             <>
                 <Header />               
-                <div className="bg-image">
+                {/* <div className="bg-image">
                 <div className="container">
                     <h1>Bienvenido a Pan Diario</h1>
                     <h1>Una Franquicia Bimbo</h1>
@@ -28,7 +28,7 @@ const HomePage = () => {
                     Aquí puedes encontrar información relevante sobre nuestros servicios y productos.
                     Nos esforzamos por ofrecer la mejor calidad y atención a nuestros clientes.
                 </p>
-                </div>
+                </div> */}
                 <Dashboard/>
                 <Footer />
             </>
