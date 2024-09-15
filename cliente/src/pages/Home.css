@@ -12,20 +12,15 @@
     border-radius: 10px;
     margin: 0 10px; 
 }
-h1,h2 {
-    font-size: 2rem;
+.container {
+    background-color: rgba(255, 255, 255, 0.3);
     color: black;
 }
-h4{
-    color: black;
+h1 {
+    font-size: 2rem;
 }
 
 p{
     text-align: center;
     font-size: 1.8rem;
-    color: black;
-}
-
-li {
-    font-size: 1rem;
 }
