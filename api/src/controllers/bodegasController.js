@@ -17,25 +17,30 @@ class BodegaController {
     //         res.status(500).json({error: error.message});
     //     }
     // }
-    // addBodegas = async(req, res)=>{
-    //     try {
-    //         const bodega = await this.bodegaService.addBodega(req.body);
-    //         res.status(200).json(bodega);
-    //     } catch (error) {
-    //         res.status(500).json({error: error.message});
-    //     }
-    // }
-    // getBodegaById = async(req,res)=>{
-    //     try {
-    //         const bodega = await this.bodegaService.getBodegaById(req.params.id, req.body);
-    //         if(!bodega){
-    //             return res.status(404).json({message: 'No se encuentra la bodega'});
-    //         }
-    //         res.status(200).json(bodega);
-    //     } catch (error) {
-    //         res.status(500).json({error: error.message});
-    //     }
-    // }
+    async addBodega (req, res){
+        try {
+            const bodega = await BodegaService.addBodega(req.body);
+            res.status(200).json(bodega);
+        } catch (error) {
+            res.status(500).json({error: error.message});
+        }
+    }
+    async updateBodega(req, res) {
+        try {
+            const bodega = await BodegaService.updateBodega(req.params.id, req.body);
+            res.json(bodega);
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+    async deleteBodega(req, res) {
+        try {
+            await BodegaService.deleteBodega(req.params.id);
+            res.status(204).send();
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
 }
 
 export default new BodegaController();

@@ -14,7 +14,7 @@ const Dashboard = () => {
   const cards = [
     { to: "/inventario", icon: icon1, title: "Inventario" },
     { to: "/usuarios", icon: icon2, title: "Usuarios" },
-    { to: "/bodega", icon: icon3, title: "Bodega" },
+    { to: "/bodegas", icon: icon3, title: "Bodega" },
     { to: "/reportes", icon: icon4, title: "Reportes" },
     { to: "/productos", icon: icon5, title: "Productos" },
     { to: "/traslados", icon: icon6, title: "Traslados" },

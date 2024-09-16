@@ -8,7 +8,7 @@ import HomePage from './pages/Home';
 import Usuarios from './pages/Usuarios';
 import Inventario from './pages/Inventario';
 import InventariosXBodega from './pages/InventarioXBodega'
-import Bodega from './pages/Bodega';
+import Bodegas from './pages/Bodegas';
 import Reportes from './pages/Reportes';
 import Login from './componets/ingreso/Login';
 import Dashboard from './componets/Dashboard.jsx';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/inventario" element={<InventariosXBodega/>}/>
         <Route path="/usuarios" element={<Usuarios/>}/>
-        <Route path="/bodega" element={<Bodega/>}/>
+        <Route path="/bodegas" element={<Bodegas/>}/>
         <Route path="/lotes" element={<Lotes/>}/>
         <Route path="/reportes" element={<Reportes/>}/>
         <Route path="/productos" element={<Productos/>}/>

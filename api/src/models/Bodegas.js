@@ -24,6 +24,10 @@ const BodegasModel = function(sequelize) {
         key: 'id'
       }
     },
+    habilitado:{
+      type: DataTypes.BOOLEAN,
+      allowNull: true 
+   },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: true,

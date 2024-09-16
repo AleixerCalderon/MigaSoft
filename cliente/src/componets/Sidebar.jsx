@@ -27,7 +27,7 @@ const Sidebar = () => {
           </li>
           
           <li>
-            <Link className="link" to="/bodega">
+            <Link className="link" to="/bodegas">
             <img src={icon3} alt="Bodega"/>Bodega
             </Link>
           </li>
