@@ -22,25 +22,33 @@ const paginationComponentOptions = {
 
 const Traslados = () => {
   const [cantidadT, setCantidadT] = useState([1]);
+  const [detallesList, setDetallesList] = useState([     
+       
+  ]);
+  const [detallesT, setDetallesT] = useState(     
+    {
+      idLote: 0,
+      cantidad: 1
+    }    
+);
+  
   const [traslados, setTraslados] = useState([]);
   const [bodegas, setBodegas] = useState([]);
   const [lotes, setLotes] = useState([]);
   const [nuevoTraslado, setNuevoTraslado] = useState({
     idBodegaOrigen: "",
     idBodegaDestino: "",
-    descripcion: "",      
-    detalles: [
-      {
-        idLote: 0,
-        cantidad: 1
-      }
-    ]
+    descripcion: "",
+    detalles: detallesList
   });
 
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  useEffect(()=>{    
-  },[cantidadT,nuevoTraslado]);
+
+  useEffect(() => {
+  }, [cantidadT, nuevoTraslado,detallesList,detallesT]);
+
+
   useEffect(() => {
     darTraslados();
     darBodegas();
@@ -65,20 +73,21 @@ const Traslados = () => {
   };
 
   const handleCrearTraslado = async () => {
-    try {
-      await Api.post("/traslado/agregar", nuevoTraslado);
+    try {      
+      const trasladoActualizado = {
+        ...nuevoTraslado,
+        detalles: detallesList
+      }
+      setNuevoTraslado(trasladoActualizado);
+      await Api.post("/traslado/agregar", trasladoActualizado);
       darTraslados();
       setShowModal(false);
+      setDetallesList([]);
       setNuevoTraslado({
         idBodegaOrigen: "",
-    idBodegaDestino: "",
-    descripcion: "",      
-    detalles: [
-      {
-        idLote: 0,
-        cantidad: 1
-      }
-    ]
+        idBodegaDestino: "",
+        descripcion: "",
+        detalles: detallesList
       });
     } catch (error) {
       console.error(error);
@@ -140,16 +149,16 @@ const Traslados = () => {
     },
     {
       name: "Confirmar Traslado",
-     
+
       cell: (row) => (
-        row.estado !== "Confirmado"?(
-        <button
-          className="btn btn-success"
-          onClick={() => handleConfirmarTraslado(row.id)}
-        >
-          Confirmar
-        </button>
-        ):(
+        row.estado !== "Confirmado" ? (
+          <button
+            className="btn btn-success"
+            onClick={() => handleConfirmarTraslado(row.id)}
+          >
+            Confirmar
+          </button>
+        ) : (
           <span>Traslado Confirmado</span>
         )
       ),
@@ -159,11 +168,11 @@ const Traslados = () => {
 
   return (
     <>
-    <Header />
+      <Header />
 
       <Container fluid className="contenedor-p">
         <Row className="content-p">
-        <Col lg={2} md={4} sm={12} xs={12} className="sidebar">
+          <Col lg={2} md={4} sm={12} xs={12} className="sidebar">
             <Sidebar />
           </Col>
 
@@ -255,26 +264,21 @@ const Traslados = () => {
                       />
                       <Form.Control
                         as="select"
-                        value={nuevoTraslado.detalles[0].idLote}
-                        onChange={(e) =>{
-                          const updateDetalles = [...nuevoTraslado.detalles];
-                          updateDetalles[0] = {...updateDetalles[0], idLote:parseInt(e.target.value)};
-                          setNuevoTraslado({
-                            ...nuevoTraslado,
-                            detalles: updateDetalles,
-                          })
+                        value={detallesT.idLote}
+                        onChange={(e) => {
+                          setDetallesT((d)=>({...d, idLote: e.target.value}));   
                         }
                         }
                       >
-                        <option value="">Seleccionar Lote</option>                        
-                        { Array.isArray(lotes) && lotes.length > 0?(
-                        lotes.map((lote) => (
-                          <option key={lote.id} value={lote.id}>
-                            {lote.Producto.nombre}
-                          </option>
-                        ))):(
+                        <option value="">Seleccionar Lote</option>
+                        {Array.isArray(lotes) && lotes.length > 0 ? (
+                          lotes.map((lote) => (
+                            <option key={lote.id} value={lote.id}>
+                              {lote.Producto.nombre}
+                            </option>
+                          ))) : (
                           <option disabled>
-                           No existe el lote
+                            No existe el lote
                           </option>
                         )}
                       </Form.Control>
@@ -284,20 +288,23 @@ const Traslados = () => {
                       <Form.Label>Cantidad</Form.Label>
                       <Form.Control
                         type="number"
-                        value={nuevoTraslado.detalles[0].cantidad}
-                        onChange={(e) =>{
-                          setCantidadT(e.target.value);
-                          const updateDetalles = [...nuevoTraslado.detalles];
-                          updateDetalles[0] = {...updateDetalles[0], cantidad:Number(cantidadT)};
-     
-                          setNuevoTraslado({
-                            ...nuevoTraslado,
-                            detalles:updateDetalles
-                          })
+                        value={detallesT.cantidad}
+                        onChange={(e) => {
+                          setDetallesT((d)=>({...d, cantidad: e.target.value}));                         
                         }
                         }
                       />
                     </Form.Group>
+                    <Button onClick={() => {
+                      setDetallesList((d)=>[...d,detallesT]);
+                    }}>Agregar Lote</Button>
+
+                    {detallesList.map((detalle)=>(
+                      <div>
+                      <span> Cantidad  {detalle.cantidad}</span>
+                      <span> Id Lote  {detalle.idLote}</span>
+                      </div>
+                    ))}
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
