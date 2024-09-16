@@ -87,17 +87,32 @@ class TrasladoRepository {
                 for (const detalle of traslado.Detalles) {
                     const { idLote, Cantidad } = detalle.dataValues;
                     // Restar la cantidad de la bodega origen
-                    await Inventario.increment(
-                        { Cantidad: -Cantidad },
-                        {
-                            where: {
-                                idBodega: traslado.idBodegaOrigen,
-                                idLote: idLote
-                            },
-                            transaction: t
-                        }
-                    );
-
+                    const inventarioOrigen = await Inventario.findOne({
+                        where: {
+                            idBodega: traslado.idBodegaOrigen,
+                            idLote: idLote
+                        },
+                        transaction: t
+                    });
+                    if (inventarioOrigen) {
+                        await Inventario.increment(
+                            { Cantidad: -Cantidad },
+                            {
+                                where: {
+                                    idBodega: traslado.idBodegaOrigen,
+                                    idLote: idLote
+                                },
+                                transaction: t
+                            }
+                        );
+                    }
+                    else {
+                        await Inventario.create({
+                            idBodega: traslado.idBodegaOrigen,
+                            idLote: idLote,
+                            Cantidad: -Cantidad
+                        }, { transaction: t });
+                    }
                     const inventarioDestino = await Inventario.findOne({
                         where: {
                             idBodega: traslado.idBodegaDestino,
@@ -121,9 +136,9 @@ class TrasladoRepository {
                     else {
                         await Inventario.create({
                             idBodega: traslado.idBodegaDestino,
-                            idLote:idLote,
-                            Cantidad:Cantidad
-                        },{transaction: t});
+                            idLote: idLote,
+                            Cantidad: Cantidad
+                        }, { transaction: t });
                     }
                     // Insertar el movimiento para la bodega origen
                     await MovimientosInventarioBodega.create({
