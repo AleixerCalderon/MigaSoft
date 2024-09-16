@@ -47,7 +47,7 @@ class TrasladoRepository {
     async getTrasladoXBodegaDestino(id) {
         return await Traslados.findAll({ where: { idBodegaDestino: id }, });
     }
-  
+
     async deleteTraslado(id) {
         //TODO Eliminar el detalle y usar el Trans 
         return await Traslados.destroy({
@@ -79,13 +79,13 @@ class TrasladoRepository {
                 if (!traslado) {
                     throw new Error('El traslado no existe');
                 }
-                if(traslado.estado == 'Confirmado'){
+                if (traslado.estado == 'Confirmado') {
                     throw new Error('El traslado ya ha sido confirmado');
                 }
 
                 // Recorrer cada detalle del traslado para actualizar el inventario
-                for (const detalle of traslado.Detalles) {                   
-                    const { idLote, Cantidad } = detalle.dataValues;                  
+                for (const detalle of traslado.Detalles) {
+                    const { idLote, Cantidad } = detalle.dataValues;
                     // Restar la cantidad de la bodega origen
                     await Inventario.increment(
                         { Cantidad: -Cantidad },
@@ -98,18 +98,33 @@ class TrasladoRepository {
                         }
                     );
 
-                    // Sumar la cantidad a la bodega destino
-                    await Inventario.increment(
-                        { Cantidad: Cantidad },
-                        {
-                            where: {
-                                idBodega: traslado.idBodegaDestino,
-                                idLote: idLote
-                            },
-                            transaction: t
-                        }
-                    );
-
+                    const inventarioDestino = await Inventario.findOne({
+                        where: {
+                            idBodega: traslado.idBodegaDestino,
+                            idLote: idLote
+                        },
+                        transaction: t
+                    });
+                    if (inventarioDestino) {
+                        // Sumar la cantidad a la bodega destino
+                        await Inventario.increment(
+                            { Cantidad: Cantidad },
+                            {
+                                where: {
+                                    idBodega: traslado.idBodegaDestino,
+                                    idLote: idLote
+                                },
+                                transaction: t
+                            }
+                        );
+                    }
+                    else {
+                        await Inventario.create({
+                            idBodega: traslado.idBodegaDestino,
+                            idLote:idLote,
+                            Cantidad:Cantidad
+                        },{transaction: t});
+                    }
                     // Insertar el movimiento para la bodega origen
                     await MovimientosInventarioBodega.create({
                         idBodega: traslado.idBodegaOrigen,
@@ -140,7 +155,7 @@ class TrasladoRepository {
 
             return result;
         } catch (error) {
-            throw new Error('No se pudo confirmar el traslado: '+  error);
+            throw new Error('No se pudo confirmar el traslado: ' + error);
         }
     }
 }

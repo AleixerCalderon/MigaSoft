@@ -91,6 +91,12 @@ router.get('/nombre/:nombreOCodigo', authMiddleware, loteController.getLoteByNom
  *                 type: string
  *               CodigoBarras:
  *                 type: string
+ *               PrecioUnitario:
+ *                 type: integer
+ *               PrecioVenta:
+ *                 type: integer
+ *               habilitado:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Registro exitoso.

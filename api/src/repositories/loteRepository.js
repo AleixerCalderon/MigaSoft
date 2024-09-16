@@ -61,9 +61,9 @@ class LoteRepository {
     async deleteLote(id) {
         try {
             return await Lotes.destroy({ where: { id } });
-        } catch (error) {
-            if (error instanceof ForeignKeyConstraintError) {
-                try {
+        } catch (error) {          
+            if (error.name == "ForeignKeyConstraintError" || error.name == "SequelizeForeignKeyConstraintError") {
+                try {                 
                     const loteD = await this.deshabilitarLote(id);
                     return loteD;
                 } catch (error) {

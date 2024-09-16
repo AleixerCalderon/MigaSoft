@@ -32,6 +32,18 @@ const LotesModel = function (sequelize) {
       type: DataTypes.STRING(255),
       allowNull: false
     },
+    PrecioUnitario: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false
+    },
+    PrecioVenta: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false
+    },
+    habilitado:{
+      type: DataTypes.BOOLEAN,
+      allowNull: true 
+   },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,

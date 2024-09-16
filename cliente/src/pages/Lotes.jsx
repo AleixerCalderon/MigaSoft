@@ -12,6 +12,8 @@ import Form from "react-bootstrap/Form";
 import "./responsive.css";
 import IconPro from "../assets/icon-lotes.svg";
 import IconAdd from "../assets/icon-agregar.svg";
+import IconCheck from "../assets/task.svg";
+import Iconblock from "../assets/block.svg";
 import Api from "../AxiosConfig";
 import Alert from "react-bootstrap/Alert";
 
@@ -25,7 +27,7 @@ const paginationComponentOptions = {
 const customStyles = {
   rows: {
     style: {
-      minHeight: "60px",
+      minHeight: "30px",
       fontSize: "1em", // override the row height
     },
   },
@@ -52,25 +54,29 @@ const Lotes = () => {
   const [lote, setLote] = useState([]);
   const [edit, setEdit] = useState([]);
   const [productId, setProductId] = useState([]);
-
+  const [productos, setProductos] = useState([]);
+  const [lotes, setLotes] = useState([]);
   const handleEdit = (lote) => {
     setLote({
-      nombre: lote.nombre,
-      descripcion: lote.descripcion,
-      peso: lote.peso,
-      volumen: lote.volumen,
+      id: lote.id,
+      idProducto: lote.idProducto,
+      FechaEntrada: lote.FechaEntrada,
+      FechaVencimiento: lote.FechaVencimiento,
+      CodigoLote: lote.CodigoLote,
+      CodigoBarras: lote.CodigoBarras,
       PrecioUnitario: lote.PrecioUnitario,
       PrecioVenta: lote.PrecioVenta,
-      habilitado: lote.habilitado,
+      habilitado: lote.habilitado
     });
-    setProductId(lote.id);
-    handleShow();
+    setProductId(lote.idProducto);
+    setShow(true);
     setEdit(true);
+    darLotes();
   };
 
   const handleDelete = (lote) => {
-    setProductId(lote.id);
-    eliminarLote();
+    setProductId(lote.idProducto);
+    eliminarLote(lote.id);
   };
 
   const columns = [
@@ -82,6 +88,26 @@ const Lotes = () => {
     {
       name: "Id Producto",
       selector: (row) => row.idProducto,
+      sortable: true,
+    },
+    {
+      name: "Nombre Producto",
+      selector: (row) => row.Producto.nombre,
+      sortable: true,
+    },
+    {
+      name: "Descripción Producto",
+      selector: (row) => row.Producto.descripcion,
+      sortable: true,
+    },
+    {
+      name: "Precio Unitario",
+      selector: (row) => row.PrecioUnitario,
+      sortable: true,
+    },
+    {
+      name: "Precio Venta",
+      selector: (row) => row.PrecioVenta,
       sortable: true,
     },
     {
@@ -102,6 +128,13 @@ const Lotes = () => {
     {
       name: "Codigo Barras",
       selector: (row) => row.CodigoBarras,
+      sortable: true,
+    },
+    {
+      name: "Habilitado",
+      selector: (row) => {        
+        return row.habilitado?  <span> <img className="aab-icon text-success" src={IconCheck} alt="Check" /></span>: <span><img className="aab-icon" src={Iconblock} alt="Not Check" /></span>;
+      },
       sortable: true,
     },
     {
@@ -130,9 +163,26 @@ const Lotes = () => {
   ];
   useEffect(() => {
     darLotes();
+  }, []);
+
+  useEffect(() => {
     setEdit(false);
   }, []);
-  const [lotes, setLotes] = useState([]);
+
+  useEffect(() => {
+    darProductos();
+  }, []);
+
+  useEffect(() => {
+    if(edit && lote.id)
+    {
+      setLote({
+        ...lote,
+        idProducto: lote.idProducto || ""
+      });
+    }
+  }, [edit, lote.id]);
+ 
 
   const handleChange = (e) => {
     setLote({
@@ -164,15 +214,17 @@ const Lotes = () => {
       const response = await Api.post("/lote/agregar", lote);
       darLotes();
       setLote({
-        idProducto:"",
+        id: "",
+        idProducto: "",
         FechaEntrada: "",
         FechaVencimiento: "",
         CodigoLote: "",
         CodigoBarras: "",
-        createdAt: "",
-        updatedAt: ""
-      },);
-      handleClose();
+        PrecioUnitario: 0,
+        PrecioVenta: 0,
+        habilitado: true
+      });
+      handleClose();      
     } catch (error) {
       console.error(error);
     }
@@ -180,29 +232,51 @@ const Lotes = () => {
 
   const editarLote = async () => {
     try {
-      const response = await Api.put("/lote/" + productId, lote);
+
+      const response = await Api.put("/lote/" + lote.id, lote);
       darLotes();
       setLote({
-        idProducto:"",
+        id: "",
+        idProducto: "",
         FechaEntrada: "",
         FechaVencimiento: "",
         CodigoLote: "",
         CodigoBarras: "",
-        createdAt: "",
-        updatedAt: ""
+        PrecioUnitario: 0,
+        PrecioVenta: 0,
+        habilitado: true
       });
       handleClose();
       setProductId(null);
+      setEdit(false);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const eliminarLote = async () => {
+  const eliminarLote = async (id) => {
     try {
-      const response = await Api.delete("/lote/" + productId);
+      const response = await Api.delete("/lote/" + id);
       darLotes();
       handleShowAlert();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const darProductos = async () => {
+    try {
+      const response = await Api.get(`/producto/darProductos`);
+      setProductos(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleBuscarProducto = async (searchTerm) => {
+    try {
+      const response = await Api.get(`/producto/nombre/${searchTerm}`);
+      setProductos(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -211,12 +285,25 @@ const Lotes = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setLote({    
+      idProducto: "",
+      FechaEntrada: "",
+      FechaVencimiento: "",
+      CodigoLote: "",
+      CodigoBarras: "",
+      PrecioUnitario: 0,
+      PrecioVenta: 0,
+      habilitado: true
+    });
+    setEdit(false);
+    setShow(true);
+  };
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const handleShowAlert = ()=>{
+  const handleShowAlert = () => {
     setShowAlert(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setShowAlert(false);
     }, 5000);
   }
@@ -259,52 +346,52 @@ const Lotes = () => {
                   <Form onSubmit={handleSubmit}>
                     <div>
                       <label htmlFor="" className="form-label">
-                        Nombre
+                        Fecha Entrada
                       </label>
                       <input
                         className="form-control"
-                        type="text"
-                        name="nombre"
-                        value={lote.nombre}
+                        type="date"
+                        name="FechaEntrada"
+                        value={lote.FechaEntrada}
                         onChange={handleChange}
                         required
                       />
                     </div>
                     <div>
                       <label htmlFor="" className="form-label">
-                        Descripcion
+                        Fecha Vencimiento
                       </label>
                       <input
                         className="form-control"
-                        type="text"
-                        name="descripcion"
-                        value={lote.descripcion}
+                        type="date"
+                        name="FechaVencimiento"
+                        value={lote.FechaVencimiento}
                         onChange={handleChange}
                         required
                       />
                     </div>
                     <div>
                       <label htmlFor="" className="form-label">
-                        Peso
+                        Codigo Lote
                       </label>
                       <input
                         className="form-control"
                         type="text"
-                        name="peso"
-                        value={lote.peso}
+                        name="CodigoLote"
+                        value={lote.CodigoLote}
                         onChange={handleChange}
                         required
                       />
                     </div>
                     <div>
                       <label htmlFor="" className="form-label">
-                        Volumen
+                        Codigo Barras
                       </label>
                       <input
                         className="form-control"
                         type="text"
-                        name="volumen"
-                        value={lote.volumen}
+                        name="CodigoBarras"
+                        value={lote.CodigoBarras}
                         onChange={handleChange}
                         required
                       />
@@ -343,10 +430,41 @@ const Lotes = () => {
                         className="form-control"
                         type="checkbox"
                         name="habilitado"
-                        value={lote.habilitado}
-                        onChange={handleChange}
-                        class="form-check-input"/>
+                        checked={lote.habilitado}
+                        onChange={(e) =>
+                          setLote({
+                            ...lote,
+                            habilitado: e.target.checked,
+                          })
+                        }
+                        class="form-check-input" />
                     </div>
+                    <Form.Group>
+                      <Form.Label>Buscar producto (nombre)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => handleBuscarProducto(e.target.value)}
+                      />
+                      <Form.Control
+                        as="select"
+                        value={lote.idProducto}
+                        onChange={(e)=> setLote({...lote, idProducto:e.target.value})}
+                      >
+                        <option value="">Seleccionar Producto</option>
+                        {Array.isArray(productos) && productos.length > 0 ? (
+                          productos.map((producto) => (
+                            <option key={producto.id} value={producto.id}>
+                              {producto.nombre}
+                            </option>
+                          ))) : (
+                          <option disabled>
+                            No existe el lote
+                          </option>
+                        )}
+                      </Form.Control>
+                    </Form.Group>
+
+
                     <div>
                       <button type="submit" className="btn btn-success">
                         Guardar
@@ -360,12 +478,12 @@ const Lotes = () => {
         </Row>
         <Row>
           <Col>
-          { showAlert && (
-            <Alert key='success' variant='success' onClose={() => setShowAlert(false)}>
-              La consulta se ha realizado exitosamente
-            </Alert>
+            {showAlert && (
+              <Alert key='success' variant='success' onClose={() => setShowAlert(false)}>
+                La consulta se ha realizado exitosamente
+              </Alert>
             )
-          }
+            }
           </Col>
         </Row>
       </Container>

@@ -21,6 +21,7 @@ const paginationComponentOptions = {
 };
 
 const Traslados = () => {
+  const [cantidadT, setCantidadT] = useState([1]);
   const [traslados, setTraslados] = useState([]);
   const [bodegas, setBodegas] = useState([]);
   const [lotes, setLotes] = useState([]);
@@ -38,7 +39,8 @@ const Traslados = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
+  useEffect(()=>{    
+  },[cantidadT,nuevoTraslado]);
   useEffect(() => {
     darTraslados();
     darBodegas();
@@ -264,12 +266,17 @@ const Traslados = () => {
                         }
                         }
                       >
-                        <option value="">Seleccionar Lote</option>
-                        {lotes.map((lote) => (
+                        <option value="">Seleccionar Lote</option>                        
+                        { Array.isArray(lotes) && lotes.length > 0?(
+                        lotes.map((lote) => (
                           <option key={lote.id} value={lote.id}>
                             {lote.Producto.nombre}
                           </option>
-                        ))}
+                        ))):(
+                          <option disabled>
+                           No existe el lote
+                          </option>
+                        )}
                       </Form.Control>
                     </Form.Group>
 
@@ -279,12 +286,13 @@ const Traslados = () => {
                         type="number"
                         value={nuevoTraslado.detalles[0].cantidad}
                         onChange={(e) =>{
+                          setCantidadT(e.target.value);
                           const updateDetalles = [...nuevoTraslado.detalles];
-                          updateDetalles[0] = {...updateDetalles[0], cantidad:Number(e.target.value)};
+                          updateDetalles[0] = {...updateDetalles[0], cantidad:Number(cantidadT)};
      
                           setNuevoTraslado({
                             ...nuevoTraslado,
-                            cantidad: updateDetalles,
+                            detalles:updateDetalles
                           })
                         }
                         }
