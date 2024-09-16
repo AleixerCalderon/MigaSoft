@@ -3,6 +3,22 @@ import usuarioController from '../controllers/usuarioController.js';
 import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
+
+/**
+* @swagger
+* /users:
+*   get:
+*     summary: Obtener lista de usuarios
+*     description: Obtiene los usuarios.
+*     tags:
+*       - Usuarios
+*     responses:
+*       200:
+*         description: Detalles de los usuarios.
+*       404:
+*         description: Usuarios no encontrados.
+*/
+router.get('/', authMiddleware, usuarioController.getUsers);
  
 /**
 * @swagger

@@ -264,8 +264,7 @@ const Productos = () => {
               <DataTable
                 columns={columns}
                 data={productos}
-                showGridlines
-                selectableRows
+                showGridlines               
                 pagination
                 paginationComponentOptions={paginationComponentOptions}
                 customStyles={customStyles}

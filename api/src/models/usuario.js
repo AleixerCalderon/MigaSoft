@@ -26,6 +26,10 @@ const usuarioModel = function (sequelize) {
             type: DataTypes.CHAR(60),
             allowNull: false
         },
+        habilitado:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true 
+         },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,

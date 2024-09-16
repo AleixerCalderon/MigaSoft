@@ -1,6 +1,14 @@
 import usuarioService from '../services/usuarioService.js';
 
 class UsuarioController {
+    async getUsers(req, res) {
+        try {
+            const users = await usuarioService.getUsers();
+            res.json(users);
+        } catch (error) {
+            res.status(404).json({ error: 'Users not found' });
+        }
+    }
     async getUser(req, res) {
         try {
             const user = await usuarioService.getUserById(req.params.id);

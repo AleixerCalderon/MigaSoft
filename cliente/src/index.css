@@ -25,3 +25,12 @@ img{
 .ikexHN { 
   min-width: 40px !important;
 }
+
+.aab-span-div{
+  display: grid;
+  align-content: space-around;
+  justify-items: start;
+}
+.aab-span{
+  padding: 5px;
+}

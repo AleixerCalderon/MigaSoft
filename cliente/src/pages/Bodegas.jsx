@@ -238,8 +238,7 @@ const Bodegas = () => {
               <DataTable
                 columns={columns}
                 data={bodegas}
-                showGridlines
-                selectableRows
+                showGridlines              
                 pagination
                 paginationComponentOptions={paginationComponentOptions}
                 customStyles={customStyles}

@@ -5,22 +5,40 @@ class UsuarioRepository {
   async createUser(data) {
     return await User.create(data);
   }
-
+  async getUsers() {
+    return await User.findAll({
+      include: [
+        {
+          model: Persona,
+          as: 'Personas',
+          attributes: ['nombre', 'apellido'],
+        },
+        {
+          model: Roles,
+          as: 'Roles',
+          through: { attributes: [] },
+          attributes: ['descripcion'],
+        }
+      ],
+    });
+  }
   async getUserByUsername(usuario) {
-    return await User.findOne({ where: { usuario },
-    include:[
-      {
-        model:Persona,
-        as:'Personas',
-        attributes:['nombre','apellido'],
-      },
-      {
-        model:Roles,
-        as :'Roles',
-        through:{attributes:[]},
-        attributes:['descripcion'],
-      }
-    ],});
+    return await User.findOne({
+      where: { usuario },
+      include: [
+        {
+          model: Persona,
+          as: 'Personas',
+          attributes: ['nombre', 'apellido'],
+        },
+        {
+          model: Roles,
+          as: 'Roles',
+          through: { attributes: [] },
+          attributes: ['descripcion'],
+        }
+      ],
+    });
   }
 
   async getUserById(id) {

@@ -1,6 +1,9 @@
 import UsuarioRepository from '../repositories/UsuarioRepository.js';
 
 class UsuarioService {
+    async getUsers() {
+        return await UsuarioRepository.getUsers();
+    }
     async getUserById(id) {
         return await UsuarioRepository.getUserById(id);
     }

@@ -331,8 +331,7 @@ const Lotes = () => {
               <DataTable
                 columns={columns}
                 data={lotes}
-                showGridlines
-                selectableRows
+                showGridlines               
                 pagination
                 paginationComponentOptions={paginationComponentOptions}
                 customStyles={customStyles}
