@@ -1,4 +1,4 @@
-import ProductoRepository from '../repositories/ProductoRepository.js';
+import ProductoRepository from '../repositories/productoRepository.js';
 
 class ProductoService {
     async getProductos() {
