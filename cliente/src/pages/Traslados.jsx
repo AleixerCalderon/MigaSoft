@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Api from "../AxiosConfig";
 import Alert from "react-bootstrap/Alert";
+import TrasladoDetalles from "../pages/DetalleTraslado.jsx";
 
 const paginationComponentOptions = {
   rowsPerPageText: "Filas por página",
@@ -22,16 +23,16 @@ const paginationComponentOptions = {
 
 const Traslados = () => {
   const [cantidadT, setCantidadT] = useState([1]);
-  const [detallesList, setDetallesList] = useState([     
-       
+  const [detallesList, setDetallesList] = useState([
+
   ]);
-  const [detallesT, setDetallesT] = useState(     
+  const [detallesT, setDetallesT] = useState(
     {
       idLote: 0,
       cantidad: 1
-    }    
-);
-  
+    }
+  );
+
   const [traslados, setTraslados] = useState([]);
   const [bodegas, setBodegas] = useState([]);
   const [lotes, setLotes] = useState([]);
@@ -44,9 +45,14 @@ const Traslados = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [trasladoSelect, setTrasladoSelect] = useState({});
+
+  const handleRowClick = (row) => {
+    setTrasladoSelect(row);
+  }
 
   useEffect(() => {
-  }, [cantidadT, nuevoTraslado,detallesList,detallesT]);
+  }, [cantidadT, nuevoTraslado, detallesList, detallesT]);
 
 
   useEffect(() => {
@@ -73,7 +79,7 @@ const Traslados = () => {
   };
 
   const handleCrearTraslado = async () => {
-    try {      
+    try {
       const trasladoActualizado = {
         ...nuevoTraslado,
         detalles: detallesList
@@ -146,6 +152,18 @@ const Traslados = () => {
       name: "Estado",
       selector: (row) => row.estado,
       sortable: true,
+    },
+    {
+      name: "Detalle",
+
+      cell: (row) => (
+        <button
+          className="btn btn-outline-info"
+          onClick={() => handleRowClick(row)} >
+          Ver Detalle
+        </button>
+      ),
+      button: true,
     },
     {
       name: "Confirmar Traslado",
@@ -266,7 +284,7 @@ const Traslados = () => {
                         as="select"
                         value={detallesT.idLote}
                         onChange={(e) => {
-                          setDetallesT((d)=>({...d, idLote: e.target.value}));   
+                          setDetallesT((d) => ({ ...d, idLote: e.target.value }));
                         }
                         }
                       >
@@ -290,21 +308,39 @@ const Traslados = () => {
                         type="number"
                         value={detallesT.cantidad}
                         onChange={(e) => {
-                          setDetallesT((d)=>({...d, cantidad: e.target.value}));                         
+                          setDetallesT((d) => ({ ...d, cantidad: e.target.value }));
                         }
                         }
                       />
                     </Form.Group>
                     <Button onClick={() => {
-                      setDetallesList((d)=>[...d,detallesT]);
+                      setDetallesList((d) => [...d, detallesT]);
                     }}>Agregar Lote</Button>
 
-                    {detallesList.map((detalle)=>(
-                      <div>
-                      <span> Cantidad  {detalle.cantidad}</span>
-                      <span> Id Lote  {detalle.idLote}</span>
-                      </div>
+                      <table className='table table-secondary'>
+                        <thead>
+                          <tr>
+                            <td>
+                              Cantidad
+                            </td>
+                            <td>
+                              Id Lote
+                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                    {detallesList.map((detalle) => (
+                          <tr>
+                            <td>
+                              {detalle.cantidad}
+                            </td>
+                            <td>
+                              {detalle.idLote}
+                            </td>
+                          </tr>
                     ))}
+                        </tbody>
+                      </table>
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -327,7 +363,11 @@ const Traslados = () => {
                 </Alert>
               )}
             </div>
+            {trasladoSelect.id &&
+              <TrasladoDetalles traslado={trasladoSelect} />
+            }
           </Col>
+
         </Row>
       </Container>
       <Footer />

@@ -1,4 +1,4 @@
-import { Bodegas, Traslados, DetalleTraslados, sequelize, Inventario, MovimientosInventarioBodega } from '../models/index.js';
+import { Bodegas, Traslados, DetalleTraslados, sequelize, Inventario, MovimientosInventarioBodega, Lotes, Productos } from '../models/index.js';
 //import { Op } from "sequelize";
 
 
@@ -7,7 +7,7 @@ class TrasladoRepository {
         try {
             const result = await sequelize.transaction(async (t) => {
                 const traslado = await Traslados.create(trasladoData, { transaction: t });
-                const idTraslado = traslado.id; //tomados el id del traslado recien creado
+                const idTraslado = traslado.id;
                 const detallesInsert = detallesData.map((detalle) => ({
                     idTraslado: idTraslado,
                     idLote: detalle.idLote,
@@ -37,10 +37,27 @@ class TrasladoRepository {
                     model: Bodegas,
                     as: 'BodegaDestino',
                     attributes: ['nombre'],
+                },
+                {
+                    model: DetalleTraslados,
+                    as: 'Detalles',
+                    include: [{
+                        model: Lotes,
+                        as: 'Lote',
+                        attributes: ['idProducto','CodigoLote','CodigoBarras','FechaVencimiento','FechaEntrada'],
+                        include:[
+                            {
+                                model:Productos,
+                                as: "Producto",
+                                attributes: ["nombre","descripcion"]
+                            }
+                        ]
+                    }]
                 }
             ]
         });
     }
+
     async getTrasladoXBodegaOrigen(id) {
         return await Traslados.findAll({ where: { idBodegaOrigen: id }, });
     }
