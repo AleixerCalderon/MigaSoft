@@ -64,8 +64,11 @@ const Header = () => {
                   <Nav className="justify-content-end flex-grow-1 pe-3">
                     <Link to="/home">Inicio</Link>
                     <Link to="/inventario">Inventario</Link>
+                    <Link to="/bodegas">Bodega</Link>
+                    <Link to="/lotes">Lotes</Link>
+                    <Link to="/productos">Productos</Link>
+                    <Link to="/traslados">Traslados</Link>
                     <Link to="/usuarios">Usuarios</Link>
-                    <Link to="/bodega">Bodega</Link>
                     <Link to="/reportes">Reportes</Link>
                   </Nav>
                 </Offcanvas.Body>
